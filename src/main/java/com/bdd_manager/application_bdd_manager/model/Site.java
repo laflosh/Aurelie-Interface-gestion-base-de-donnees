@@ -1,10 +1,14 @@
 package com.bdd_manager.application_bdd_manager.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -75,6 +79,13 @@ public class Site {
 	
 	@Column(name = "reference")
 	private String reference;
+	
+	@OneToMany(
+		mappedBy = "site",
+		fetch = FetchType.LAZY
+		)
+	//@JsonIgnore
+	private List<MortuaryRepository> mortuaryRepositories;
 
 	public int getId() {
 		return id;

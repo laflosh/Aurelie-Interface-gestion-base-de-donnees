@@ -2,9 +2,12 @@ package com.bdd_manager.application_bdd_manager.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -18,9 +21,6 @@ public class Furniture {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	
-	@Column(name = "mortuary_repository_id")
-	private int mortuaryRepositoryId;
 	
 	@Column(name = "issue_number")
 	private String issueNumber;
@@ -62,10 +62,10 @@ public class Furniture {
 	private String status;
 	
 	@Column(name = "tpq")
-	private String tpq;
+	private int tpq;
 	
 	@Column(name = "taq")
-	private String taq;
+	private int taq;
 	
 	@Column(name = "reference")
 	private String reference;
@@ -78,6 +78,11 @@ public class Furniture {
 	
 	@Column(name = "interpretation")
 	private String interpratation;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "mortuary_repository_id")
+	//@JsonIgnore
+	private MortuaryRepository mortuaryRepository;
 
 	public int getId() {
 		return id;
@@ -85,14 +90,6 @@ public class Furniture {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getMortuaryRepositoryId() {
-		return mortuaryRepositoryId;
-	}
-
-	public void setMortuaryRepositoryId(int mortuaryRepositoryId) {
-		this.mortuaryRepositoryId = mortuaryRepositoryId;
 	}
 
 	public String getIssueNumber() {
@@ -199,19 +196,19 @@ public class Furniture {
 		this.status = status;
 	}
 
-	public String getTpq() {
+	public int getTpq() {
 		return tpq;
 	}
 
-	public void setTpq(String tpq) {
+	public void setTpq(int tpq) {
 		this.tpq = tpq;
 	}
 
-	public String getTaq() {
+	public int getTaq() {
 		return taq;
 	}
 
-	public void setTaq(String taq) {
+	public void setTaq(int taq) {
 		this.taq = taq;
 	}
 
@@ -245,6 +242,14 @@ public class Furniture {
 
 	public void setInterpratation(String interpratation) {
 		this.interpratation = interpratation;
+	}
+
+	public MortuaryRepository getMortuaryRepository() {
+		return mortuaryRepository;
+	}
+
+	public void setMortuaryRepository(MortuaryRepository mortuaryRepository) {
+		this.mortuaryRepository = mortuaryRepository;
 	}
 	
 }

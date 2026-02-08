@@ -1,10 +1,16 @@
 package com.bdd_manager.application_bdd_manager.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -18,9 +24,6 @@ public class MortuaryRepository {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	
-	@Column(name = "site_id")
-	private int siteId;
 	
 	@Column(name = "site_number")
 	private String siteNumber;
@@ -36,6 +39,12 @@ public class MortuaryRepository {
 	
 	@Column(name = "state_of_sepulture")
 	private String stateOfSepulture;
+	
+	@Column(name = "tpq")
+	private int tpq;
+	
+	@Column(name = "taq")
+	private int taq;
 	
 	@Column(name = "timeline")
 	private String timeline;
@@ -60,6 +69,22 @@ public class MortuaryRepository {
 	
 	@Column(name = "picture")
 	private String picture;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "site_id")
+	//@JsonIgnore
+	private Site site;
+	
+	@OneToMany(
+		mappedBy = "mortuaryRepository",
+		fetch = FetchType.LAZY
+		)
+	//@JsonIgnore
+	private List<Furniture> furnitures;
+
+	public void setTaq(int taq) {
+		this.taq = taq;
+	}
 
 	public int getId() {
 		return id;
@@ -67,14 +92,6 @@ public class MortuaryRepository {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getSiteId() {
-		return siteId;
-	}
-
-	public void setSiteId(int siteId) {
-		this.siteId = siteId;
 	}
 
 	public String getSiteNumber() {
@@ -111,6 +128,18 @@ public class MortuaryRepository {
 
 	public String getStateOfSepulture() {
 		return stateOfSepulture;
+	}
+	
+	public int getTpq() {
+		return tpq;
+	}
+
+	public void setTpq(int tpq) {
+		this.tpq = tpq;
+	}
+
+	public int getTaq() {
+		return taq;
 	}
 
 	public void setStateOfSepulture(String stateOfSepulture) {
@@ -179,6 +208,22 @@ public class MortuaryRepository {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	
+	public List<Furniture> getFurnitures() {
+		return furnitures;
+	}
+
+	public void setFurnitures(List<Furniture> furnitures) {
+		this.furnitures = furnitures;
+	}
+
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
 	}
 	
 }
