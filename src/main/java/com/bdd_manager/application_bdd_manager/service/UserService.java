@@ -35,5 +35,18 @@ public class UserService {
 		return savedUser;
 		
 	}
+
+	/**
+	 * @return
+	 */
+	public Iterable<User> getAllUserInDatabase() {
+		
+		log.info("Fetch all users in the database");
+		
+		Iterable<User> users = userRepository.findAll();
+		
+		return users;
+		
+	}
 	
 }

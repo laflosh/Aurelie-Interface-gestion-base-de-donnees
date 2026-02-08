@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,30 @@ public class UserController {
 			
 		}
 
+	}
+	
+	/**
+	 * @return
+	 */
+	@GetMapping("/user")
+	public ResponseEntity<Iterable<User>> getAllUserInDatabase(){
+		
+		try {
+			
+			log.info("Trying to fetch all users in the database");
+			
+			Iterable<User> users = userService.getAllUserInDatabase();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(users);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
 	}
 	
 }
