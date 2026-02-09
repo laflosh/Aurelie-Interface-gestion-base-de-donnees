@@ -25,10 +25,10 @@ public class UserService {
 	 * @return
 	 */
 	public User addUserInDatabase(User user) {
-
-		log.info("Saving a new user in database");
 		
 		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		
+		log.info("Saving a new user in database");
 		
 		User savedUser = userRepository.save(user);
 		
@@ -46,6 +46,21 @@ public class UserService {
 		Iterable<User> users = userRepository.findAll();
 		
 		return users;
+		
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(int id) {
+		
+		log.info("Fetch one existing user by his id");
+		
+		User user = userRepository.findById(id)
+					.orElseThrow(() -> new RuntimeException("User not found"));
+		
+		return user;
 		
 	}
 	
