@@ -106,5 +106,16 @@ public class UserService {
 		return updatedUser;
 		
 	}
+
+	/**
+	 * @param id
+	 */
+	public void deleteExistingUser(int id) {
+
+		log.info("Delete an existing user in the database.");
+		
+		userRepository.deleteById(id);
+		
+	}
 	
 }
