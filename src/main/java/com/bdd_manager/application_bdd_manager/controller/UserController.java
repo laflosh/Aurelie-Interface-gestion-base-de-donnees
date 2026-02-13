@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,6 +98,31 @@ public class UserController {
 			
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 			
+		}
+		
+	}
+	
+	/**
+	 * @param user
+	 * @return
+	 */
+	@PutMapping("/user")
+	public ResponseEntity<User> updateExistingUser(@RequestBody User user){
+		
+		try {
+			
+			log.info("Trying to update an existing user in database");
+			
+			User updatedUser = userService.updateExistingUser(user);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updatedUser);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+		
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		
 		}
 		
 	}
