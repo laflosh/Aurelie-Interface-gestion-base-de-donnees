@@ -30,5 +30,18 @@ public class SiteService {
 		
 
 	}
+
+	/**
+	 * @return
+	 */
+	public Iterable<Site> getAllSiteInDatbase() {
+
+		log.info("Fetch all sites in database");
+		
+		Iterable<Site> sites = siteRepository.findAll();
+		
+		return sites;
+		
+	}
 	
 }
