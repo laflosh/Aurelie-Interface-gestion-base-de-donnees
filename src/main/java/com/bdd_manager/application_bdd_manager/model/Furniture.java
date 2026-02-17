@@ -43,6 +43,9 @@ public class Furniture {
 	@Column(name = "material")
 	private String material;
 	
+	@Column(name = "quality")
+	private String quality;
+	
 	@Column(name = "color")
 	private String color;
 	
@@ -72,6 +75,9 @@ public class Furniture {
 	
 	@Column(name = "storage_location")
 	private String storageLocation;
+	
+	@Column(name = "inventory_number")
+	private String inventoryNumber;
 	
 	@Column(name = "picture")
 	private String picture;

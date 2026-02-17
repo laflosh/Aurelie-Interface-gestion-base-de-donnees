@@ -25,6 +25,9 @@ public class MortuaryRepository {
 	@Column(name = "id")
 	private int id;
 	
+	@Column(name = "code_site")
+	private String codeSite;
+	
 	@Column(name = "site_number")
 	private String siteNumber;
 	
@@ -33,6 +36,12 @@ public class MortuaryRepository {
 	
 	@Column(name = "sepulture_type")
 	private String sepultureType;
+	
+	@Column(name = "typology")
+	private String typologie;
+	
+	@Column(name = "subtypes")
+	private String subtype;
 	
 	@Column(name = "burial_type")
 	private String burialType;

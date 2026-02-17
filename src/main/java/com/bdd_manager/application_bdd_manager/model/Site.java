@@ -23,6 +23,9 @@ public class Site {
 	@Column(name = "id")
 	private int id;
 	
+	@Column(name = "code_site")
+	private String codeSite;
+	
 	@Column(name = "site_number")
 	private String siteNumber;
 	
@@ -32,11 +35,17 @@ public class Site {
 	@Column(name = "department")
 	private String department;
 	
+	@Column(name = "micro_region")
+	private String microRegion;
+	
 	@Column(name = "ancient_name")
 	private String ancientName;
 	
 	@Column(name = "modern_name")
 	private String modernName;
+	
+	@Column(name = "site")
+	private String site;
 	
 	@Column(name = "locality")
 	private String locality;
@@ -79,6 +88,9 @@ public class Site {
 	
 	@Column(name = "reference")
 	private String reference;
+	
+	@Column(name = "picture")
+	private String picture;
 	
 	@OneToMany(
 		mappedBy = "site",
