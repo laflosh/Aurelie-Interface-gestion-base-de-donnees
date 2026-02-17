@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,6 +103,10 @@ public class SiteController {
 		
 	}
 	
+	/**
+	 * @param site
+	 * @return
+	 */
 	@PutMapping("/site")
 	public ResponseEntity<Site> updateExistingSiteInDatabse(@RequestBody Site site){
 		
@@ -118,6 +123,31 @@ public class SiteController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/site/{id}")
+	public ResponseEntity<String> deleteExistingSiteInDatabase(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to delete an existing site in database");
+			
+			siteService.deleteExistingSiteInDatabse(id);
+			
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Site was correctly delete");
+			
+		} catch(Exception e){
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 			
 		}
 		

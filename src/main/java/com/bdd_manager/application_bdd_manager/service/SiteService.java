@@ -165,5 +165,16 @@ public class SiteService {
 		return updatedSite;
 		
 	}
+
+	/**
+	 * @param id
+	 */
+	public void deleteExistingSiteInDatabse(int id) {
+
+		log.info("Delete an existing site in database");
+		
+		siteRepository.deleteById(id);
+		
+	}
 	
 }
