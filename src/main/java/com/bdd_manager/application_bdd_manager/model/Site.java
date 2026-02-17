@@ -51,16 +51,16 @@ public class Site {
 	private String locality;
 	
 	@Column(name = "latitude")
-	private float latitude;
+	private Float latitude;
 	
 	@Column(name = "longitude")
-	private float longitude;
+	private Float longitude;
 	
 	@Column(name = "tpq")
-	private int tpq;
+	private Integer tpq;
 	
 	@Column(name = "taq")
-	private int taq;
+	private Integer taq;
 	
 	@Column(name = "occupation")
 	private String occupation;
@@ -69,16 +69,16 @@ public class Site {
 	private String natureOfExcavation;
 	
 	@Column(name = "total_number_sepultures")
-	private int totalNumberSepultures;
+	private Integer totalNumberSepultures;
 	
 	@Column(name = "immature_sepulture_number")
-	private int immatureSepultureNumber;
+	private Integer immatureSepultureNumber;
 	
 	@Column(name = "sepulture_number_vab")
-	private int sepultureNumberVab;
+	private Integer sepultureNumberVab;
 	
 	@Column(name = "number_sepulture_studied")
-	private int numberSepultureStudied;
+	private Integer numberSepultureStudied;
 	
 	@Column(name = "date_excavation")
 	private String dateExcavation;
@@ -155,35 +155,35 @@ public class Site {
 		this.locality = locality;
 	}
 
-	public float getLatitude() {
+	public Float getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
 
-	public float getLongitude() {
+	public Float getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 
-	public int getTpq() {
+	public Integer getTpq() {
 		return tpq;
 	}
 
-	public void setTpq(int tpq) {
+	public void setTpq(Integer tpq) {
 		this.tpq = tpq;
 	}
 
-	public int getTaq() {
+	public Integer getTaq() {
 		return taq;
 	}
 
-	public void setTaq(int taq) {
+	public void setTaq(Integer taq) {
 		this.taq = taq;
 	}
 
@@ -203,35 +203,35 @@ public class Site {
 		this.natureOfExcavation = natureOfExcavation;
 	}
 
-	public int getTotalNumberSepultures() {
+	public Integer getTotalNumberSepultures() {
 		return totalNumberSepultures;
 	}
 
-	public void setTotalNumberSepultures(int totalNumberSepultures) {
+	public void setTotalNumberSepultures(Integer totalNumberSepultures) {
 		this.totalNumberSepultures = totalNumberSepultures;
 	}
 
-	public int getImmatureSepultureNumber() {
+	public Integer getImmatureSepultureNumber() {
 		return immatureSepultureNumber;
 	}
 
-	public void setImmatureSepultureNumber(int immatureSepultureNumber) {
+	public void setImmatureSepultureNumber(Integer immatureSepultureNumber) {
 		this.immatureSepultureNumber = immatureSepultureNumber;
 	}
 
-	public int getSepultureNumberVab() {
+	public Integer getSepultureNumberVab() {
 		return sepultureNumberVab;
 	}
 
-	public void setSepultureNumberVab(int sepultureNumberVab) {
+	public void setSepultureNumberVab(Integer sepultureNumberVab) {
 		this.sepultureNumberVab = sepultureNumberVab;
 	}
 
-	public int getNumberSepultureStudied() {
+	public Integer getNumberSepultureStudied() {
 		return numberSepultureStudied;
 	}
 
-	public void setNumberSepultureStudied(int numberSepultureStudied) {
+	public void setNumberSepultureStudied(Integer numberSepultureStudied) {
 		this.numberSepultureStudied = numberSepultureStudied;
 	}
 
