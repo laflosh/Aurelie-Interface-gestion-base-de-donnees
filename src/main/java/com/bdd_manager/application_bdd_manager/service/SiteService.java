@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.bdd_manager.application_bdd_manager.model.Site;
 import com.bdd_manager.application_bdd_manager.repository.SiteRepository;
 
+/**
+ * 
+ */
 @Service
 public class SiteService {
 
@@ -41,6 +44,21 @@ public class SiteService {
 		Iterable<Site> sites = siteRepository.findAll();
 		
 		return sites;
+		
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Site getSiteById(int id) {
+		
+		log.info("Get one site by id in the database");
+		
+		Site site = siteRepository.findById(id)
+					.orElseThrow(() -> new RuntimeException("Site not found in db"));
+		
+		return site;
 		
 	}
 	

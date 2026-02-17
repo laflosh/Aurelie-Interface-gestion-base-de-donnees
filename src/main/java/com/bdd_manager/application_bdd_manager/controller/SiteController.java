@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bdd_manager.application_bdd_manager.model.Site;
 import com.bdd_manager.application_bdd_manager.service.SiteService;
 
+/**
+ * 
+ */
 @RestController
 @RequestMapping("/api")
 public class SiteController {
@@ -61,6 +65,31 @@ public class SiteController {
 			Iterable<Site> sites = siteService.getAllSiteInDatbase();
 			
 			return ResponseEntity.status(HttpStatus.OK).body(sites);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/site/{id}")
+	public ResponseEntity<Site> getSiteById(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to fetch one site by id in the database");
+			
+			Site site = siteService.getSiteById(id);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(site);
 			
 		} catch(Exception e) {
 			

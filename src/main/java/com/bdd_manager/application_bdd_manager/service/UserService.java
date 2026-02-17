@@ -61,7 +61,7 @@ public class UserService {
 		log.info("Fetch one existing user by his id");
 		
 		User user = userRepository.findById(id)
-					.orElseThrow(() -> new RuntimeException("User not found"));
+					.orElseThrow(() -> new RuntimeException("User not found in db"));
 		
 		return user;
 		
