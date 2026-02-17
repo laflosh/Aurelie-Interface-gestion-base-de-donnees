@@ -234,5 +234,29 @@ public class MortuaryRepository {
 	public void setSite(Site site) {
 		this.site = site;
 	}
+
+	public String getCodeSite() {
+		return codeSite;
+	}
+
+	public void setCodeSite(String codeSite) {
+		this.codeSite = codeSite;
+	}
+
+	public String getTypologie() {
+		return typologie;
+	}
+
+	public void setTypologie(String typologie) {
+		this.typologie = typologie;
+	}
+
+	public String getSubtype() {
+		return subtype;
+	}
+
+	public void setSubtype(String subtype) {
+		this.subtype = subtype;
+	}
 	
 }

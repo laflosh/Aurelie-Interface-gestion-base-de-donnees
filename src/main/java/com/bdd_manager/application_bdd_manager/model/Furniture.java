@@ -257,5 +257,21 @@ public class Furniture {
 	public void setMortuaryRepository(MortuaryRepository mortuaryRepository) {
 		this.mortuaryRepository = mortuaryRepository;
 	}
+
+	public String getQuality() {
+		return quality;
+	}
+
+	public void setQuality(String quality) {
+		this.quality = quality;
+	}
+
+	public String getInventoryNumber() {
+		return inventoryNumber;
+	}
+
+	public void setInventoryNumber(String inventoryNumber) {
+		this.inventoryNumber = inventoryNumber;
+	}
 	
 }

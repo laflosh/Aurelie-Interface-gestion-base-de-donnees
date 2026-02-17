@@ -258,5 +258,45 @@ public class Site {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+
+	public String getCodeSite() {
+		return codeSite;
+	}
+
+	public void setCodeSite(String codeSite) {
+		this.codeSite = codeSite;
+	}
+
+	public String getMicroRegion() {
+		return microRegion;
+	}
+
+	public void setMicroRegion(String microRegion) {
+		this.microRegion = microRegion;
+	}
+
+	public String getSite() {
+		return site;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public List<MortuaryRepository> getMortuaryRepositories() {
+		return mortuaryRepositories;
+	}
+
+	public void setMortuaryRepositories(List<MortuaryRepository> mortuaryRepositories) {
+		this.mortuaryRepositories = mortuaryRepositories;
+	}
 	
 }
