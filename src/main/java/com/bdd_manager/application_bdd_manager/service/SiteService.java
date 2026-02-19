@@ -61,6 +61,16 @@ public class SiteService {
 		return site;
 		
 	}
+	
+	public Site getSiteByCodeSIte(String codeSite) {
+		
+		log.info("Get one site by code site in the database");
+		
+		Site site = siteRepository.findByCodeSite(codeSite);
+		
+		return site;
+		
+	}
 
 	/**
 	 * @param site

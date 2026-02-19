@@ -50,10 +50,10 @@ public class MortuaryRepository {
 	private String stateOfSepulture;
 	
 	@Column(name = "tpq")
-	private int tpq;
+	private Integer tpq;
 	
 	@Column(name = "taq")
-	private int taq;
+	private Integer taq;
 	
 	@Column(name = "timeline")
 	private String timeline;
@@ -90,10 +90,6 @@ public class MortuaryRepository {
 		)
 	//@JsonIgnore
 	private List<Furniture> furnitures;
-
-	public void setTaq(int taq) {
-		this.taq = taq;
-	}
 
 	public int getId() {
 		return id;
@@ -139,20 +135,24 @@ public class MortuaryRepository {
 		return stateOfSepulture;
 	}
 	
-	public int getTpq() {
+	public void setStateOfSepulture(String stateOfSepulture) {
+		this.stateOfSepulture = stateOfSepulture;
+	}
+	
+	public Integer getTpq() {
 		return tpq;
 	}
 
-	public void setTpq(int tpq) {
+	public void setTpq(Integer tpq) {
 		this.tpq = tpq;
 	}
 
-	public int getTaq() {
+	public Integer getTaq() {
 		return taq;
 	}
-
-	public void setStateOfSepulture(String stateOfSepulture) {
-		this.stateOfSepulture = stateOfSepulture;
+	
+	public void setTaq(Integer taq) {
+		this.taq = taq;
 	}
 
 	public String getTimeline() {
