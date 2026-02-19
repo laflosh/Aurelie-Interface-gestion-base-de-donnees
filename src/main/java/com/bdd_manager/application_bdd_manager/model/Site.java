@@ -83,10 +83,10 @@ public class Site {
 	@Column(name = "date_excavation")
 	private String dateExcavation;
 	
-	@Column(name = "observation")
+	@Column(name = "observation", columnDefinition = "TEXT")
 	private String observation;
 	
-	@Column(name = "reference")
+	@Column(name = "reference", columnDefinition = "TEXT")
 	private String reference;
 	
 	@Column(name = "picture")
