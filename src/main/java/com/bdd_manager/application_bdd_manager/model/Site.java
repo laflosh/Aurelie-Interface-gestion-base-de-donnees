@@ -2,6 +2,8 @@ package com.bdd_manager.application_bdd_manager.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -96,6 +98,7 @@ public class Site {
 		mappedBy = "site",
 		fetch = FetchType.LAZY
 		)
+	@JsonManagedReference
 	//@JsonIgnore
 	private List<MortuaryRepository> mortuaryRepositories;
 

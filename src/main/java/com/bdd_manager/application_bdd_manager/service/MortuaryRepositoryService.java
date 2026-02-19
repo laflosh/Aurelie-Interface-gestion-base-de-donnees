@@ -26,6 +26,11 @@ public class MortuaryRepositoryService {
 	@Autowired
 	SiteService siteService;
 
+	/**
+	 * @param dto
+	 * @return
+	 * @throws Exception
+	 */
 	public MortuaryRepository addMortuaryRepositoryInDatabase(MortuaryCreateDto dto) throws Exception {
 
 		MortuaryRepository mortuaryRepo = mortuaryRepoDtoToObject(dto);
@@ -38,6 +43,11 @@ public class MortuaryRepositoryService {
 		
 	}
 
+	/**
+	 * @param dto
+	 * @return
+	 * @throws Exception
+	 */
 	private MortuaryRepository mortuaryRepoDtoToObject(MortuaryCreateDto dto) throws Exception {
 		
 		Site site = new Site();
@@ -82,6 +92,19 @@ public class MortuaryRepositoryService {
 		mortuaryRepo.setPicture(dto.getPicture());
 		
 		return mortuaryRepo;
+		
+	}
+
+	/**
+	 * @return
+	 */
+	public Iterable<MortuaryRepository> getAllMortuaryRepositoryInDatabase() {
+		
+		log.info("Fetch all mortuary repo in database");
+		
+		Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryRepository.findAll();
+		
+		return mortuaryRepos;
 		
 	}
 	
