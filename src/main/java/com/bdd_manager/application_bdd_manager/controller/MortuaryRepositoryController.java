@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +66,31 @@ public class MortuaryRepositoryController {
 			Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryService.getAllMortuaryRepositoryInDatabase();
 			
 			return ResponseEntity.status(HttpStatus.OK).body(mortuaryRepos);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/mortuary-repo/{id}")
+	public ResponseEntity<MortuaryRepository> getOneMortuaryRepositoryById(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to fetch one mortuary repo by id");
+			
+			MortuaryRepository mortuaryRepo = mortuaryRepositoryService.getOneMortuaryRepositoryById(id);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(mortuaryRepo);
 			
 		} catch(Exception e) {
 			

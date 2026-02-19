@@ -42,6 +42,34 @@ public class MortuaryRepositoryService {
 		return mortuaryRepoAdd;
 		
 	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<MortuaryRepository> getAllMortuaryRepositoryInDatabase() {
+		
+		log.info("Fetch all mortuary repo in database");
+		
+		Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryRepository.findAll();
+		
+		return mortuaryRepos;
+		
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public MortuaryRepository getOneMortuaryRepositoryById(int id) {
+
+		log.info("Fetch one mortuary repo by id");
+		
+		MortuaryRepository mortuaryRepo = mortuaryRepositoryRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Mortuary repo don't exist"));
+		
+		return mortuaryRepo;
+		
+	}
 
 	/**
 	 * @param dto
@@ -92,19 +120,6 @@ public class MortuaryRepositoryService {
 		mortuaryRepo.setPicture(dto.getPicture());
 		
 		return mortuaryRepo;
-		
-	}
-
-	/**
-	 * @return
-	 */
-	public Iterable<MortuaryRepository> getAllMortuaryRepositoryInDatabase() {
-		
-		log.info("Fetch all mortuary repo in database");
-		
-		Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryRepository.findAll();
-		
-		return mortuaryRepos;
 		
 	}
 	
