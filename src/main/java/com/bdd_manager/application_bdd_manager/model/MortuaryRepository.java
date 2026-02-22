@@ -3,6 +3,7 @@ package com.bdd_manager.application_bdd_manager.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -60,9 +61,6 @@ public class MortuaryRepository {
 	@Column(name = "taq")
 	private Integer taq;
 	
-	@Column(name = "timeline")
-	private String timeline;
-	
 	@Column(name = "age")
 	private String age;
 	
@@ -94,6 +92,7 @@ public class MortuaryRepository {
 		mappedBy = "mortuaryRepository",
 		fetch = FetchType.LAZY
 		)
+	@JsonManagedReference
 	//@JsonIgnore
 	private List<Furniture> furnitures;
 
@@ -167,14 +166,6 @@ public class MortuaryRepository {
 	
 	public void setTaq(Integer taq) {
 		this.taq = taq;
-	}
-
-	public String getTimeline() {
-		return timeline;
-	}
-
-	public void setTimeline(String timeline) {
-		this.timeline = timeline;
 	}
 
 	public String getAge() {

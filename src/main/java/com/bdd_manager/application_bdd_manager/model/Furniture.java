@@ -1,5 +1,7 @@
 package com.bdd_manager.application_bdd_manager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -87,6 +89,7 @@ public class Furniture {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mortuary_repository_id")
+	@JsonBackReference
 	//@JsonIgnore
 	private MortuaryRepository mortuaryRepository;
 

@@ -121,11 +121,7 @@ public class MortuaryRepositoryService {
 			existingMortuaryRepo.setTaq(mortuaryRepo.getTaq());
 		}
 		
-		if(mortuaryRepo.getTimeline() != null && !mortuaryRepo.getTimeline().equals(existingMortuaryRepo.getTimeline())) {
-			existingMortuaryRepo.setTimeline(mortuaryRepo.getTimeline());
-		}
-		
-		if(mortuaryRepo.getAge() != null && !mortuaryRepo.getAge().equals(existingMortuaryRepo.getTimeline())) {
+		if(mortuaryRepo.getAge() != null && !mortuaryRepo.getAge().equals(existingMortuaryRepo.getAge())) {
 			existingMortuaryRepo.setAge(mortuaryRepo.getAge());
 		}
 		
@@ -220,7 +216,6 @@ public class MortuaryRepositoryService {
 		mortuaryRepo.setOrientation(dto.getOrientation());
 		mortuaryRepo.setTpq(dto.getTpq());
 		mortuaryRepo.setTaq(dto.getTaq());
-		mortuaryRepo.setTimeline(dto.getTimeline());
 		mortuaryRepo.setAge(dto.getAge());
 		mortuaryRepo.setGender(dto.getGender());
 		mortuaryRepo.setFurniture(dto.getFurniture());
