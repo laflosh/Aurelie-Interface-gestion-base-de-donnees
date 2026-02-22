@@ -153,9 +153,22 @@ public class MortuaryRepositoryService {
 			existingMortuaryRepo.setPicture(mortuaryRepo.getPicture());
 		}
 		
+		log.info("Update an existing mortuary repo in database");
+		
 		MortuaryRepository updateRepo = mortuaryRepositoryRepository.save(existingMortuaryRepo);
 			
 		return updateRepo;
+		
+	}
+	
+	/**
+	 * @param id
+	 */
+	public void deleteExistingMortuaryRepositoryInDatabase(int id) {
+
+		log.info("Delete an existing mortuary repo in database");
+		
+		mortuaryRepositoryRepository.deleteById(id);
 		
 	}
 
