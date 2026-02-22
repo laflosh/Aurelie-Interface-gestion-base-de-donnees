@@ -70,6 +70,94 @@ public class MortuaryRepositoryService {
 		return mortuaryRepo;
 		
 	}
+	
+	/**
+	 * @param mortuaryRepo
+	 * @return
+	 * @throws Exception 
+	 */
+	public MortuaryRepository updateExistingMortuaryRepositoryInDatabase(MortuaryCreateDto dto) throws Exception {
+		
+		MortuaryRepository existingMortuaryRepo = getOneMortuaryRepositoryById(dto.getId());
+		MortuaryRepository mortuaryRepo = mortuaryRepoDtoToObject(dto);
+		
+		if(mortuaryRepo.getCodeSite() != null && !mortuaryRepo.getCodeSite().equals(existingMortuaryRepo.getCodeSite())) {
+			existingMortuaryRepo.setCodeSite(mortuaryRepo.getCodeSite());
+		}
+		
+		if(mortuaryRepo.getIssueNumber() != null && !mortuaryRepo.getIssueNumber().equals(existingMortuaryRepo.getIssueNumber())) {
+			existingMortuaryRepo.setIssueNumber(mortuaryRepo.getIssueNumber());
+		}
+		
+		if(mortuaryRepo.getSepultureType() != null && !mortuaryRepo.getSepultureType().equals(existingMortuaryRepo.getSepultureType())) {
+			existingMortuaryRepo.setSepultureType(mortuaryRepo.getSepultureType());
+		}
+		
+		if(mortuaryRepo.getTypologie() != null && !mortuaryRepo.getTypologie().equals(existingMortuaryRepo.getTypologie())){
+			existingMortuaryRepo.setTypologie(mortuaryRepo.getTypologie());
+		}
+		
+		if(mortuaryRepo.getSubtype() != null && !mortuaryRepo.getSubtype().equals(existingMortuaryRepo.getSubtype())) {
+			existingMortuaryRepo.setSubtype(mortuaryRepo.getSubtype());
+		}
+		
+		if(mortuaryRepo.getBurialType() != null && !mortuaryRepo.getBurialType().equals(existingMortuaryRepo.getBurialType())) {
+			existingMortuaryRepo.setBurialType(mortuaryRepo.getBurialType());
+		}
+		
+		if(mortuaryRepo.getStateOfSepulture() != null && !mortuaryRepo.getStateOfSepulture().equals(existingMortuaryRepo.getStateOfSepulture())) {
+			existingMortuaryRepo.setStateOfSepulture(mortuaryRepo.getStateOfSepulture());
+		}
+		
+		if(mortuaryRepo.getOrientation() != null && !mortuaryRepo.getOrientation().equals(existingMortuaryRepo.getOrientation())) {
+			existingMortuaryRepo.setOrientation(mortuaryRepo.getOrientation());
+		}
+		
+		if(mortuaryRepo.getTpq() != null && mortuaryRepo.getTpq() != existingMortuaryRepo.getTpq()) {
+			existingMortuaryRepo.setTpq(mortuaryRepo.getTpq());
+		}
+		
+		if(mortuaryRepo.getTaq() != null && mortuaryRepo.getTaq() != existingMortuaryRepo.getTaq()) {
+			existingMortuaryRepo.setTaq(mortuaryRepo.getTaq());
+		}
+		
+		if(mortuaryRepo.getTimeline() != null && !mortuaryRepo.getTimeline().equals(existingMortuaryRepo.getTimeline())) {
+			existingMortuaryRepo.setTimeline(mortuaryRepo.getTimeline());
+		}
+		
+		if(mortuaryRepo.getAge() != null && !mortuaryRepo.getAge().equals(existingMortuaryRepo.getTimeline())) {
+			existingMortuaryRepo.setAge(mortuaryRepo.getAge());
+		}
+		
+		if(mortuaryRepo.getGender() != null && !mortuaryRepo.getGender().equals(existingMortuaryRepo.getGender())) {
+			existingMortuaryRepo.setGender(mortuaryRepo.getGender());
+		}
+		
+		if(mortuaryRepo.getFurniture() != null && !mortuaryRepo.getFurniture().equals(existingMortuaryRepo.getFurniture())) {
+			existingMortuaryRepo.setFurniture(mortuaryRepo.getFurniture());
+		}
+		
+		if(mortuaryRepo.getOriginFurniture() != null && !mortuaryRepo.getOriginFurniture().equals(existingMortuaryRepo.getOriginFurniture())) {
+			existingMortuaryRepo.setOriginFurniture(mortuaryRepo.getOriginFurniture());
+		}
+		
+		if(mortuaryRepo.getPublication() != null && !mortuaryRepo.getPublication().equals(existingMortuaryRepo.getPublication())) {
+			existingMortuaryRepo.setPublication(mortuaryRepo.getPublication());
+		}
+		
+		if(mortuaryRepo.getComment() != null && !mortuaryRepo.getComment().equals(existingMortuaryRepo.getComment())) {
+			existingMortuaryRepo.setComment(mortuaryRepo.getComment());
+		}
+		
+		if(mortuaryRepo.getPicture() != null && !mortuaryRepo.getPicture().equals(existingMortuaryRepo.getPicture())) {
+			existingMortuaryRepo.setPicture(mortuaryRepo.getPicture());
+		}
+		
+		MortuaryRepository updateRepo = mortuaryRepositoryRepository.save(existingMortuaryRepo);
+			
+		return updateRepo;
+		
+	}
 
 	/**
 	 * @param dto
@@ -78,28 +166,36 @@ public class MortuaryRepositoryService {
 	 */
 	private MortuaryRepository mortuaryRepoDtoToObject(MortuaryCreateDto dto) throws Exception {
 		
-		Site site = new Site();
+		MortuaryRepository mortuaryRepo = new MortuaryRepository();
 		
-		if(dto.getSiteId() != null && dto.getSiteId() > 0) {
+		if(dto.getSiteId() == null) {
 			
-			site = siteService.getSiteById(dto.getSiteId());
+			Site site = new Site();
 			
-		} else if(dto.getCodeSite() != null) {
-			
-			site = siteService.getSiteByCodeSIte(dto.getCodeSite());
-			
-		} else {
-			
-			throw new EntityNotFoundException("Site doen't exist");
+			if(dto.getSiteId() != null && dto.getSiteId() > 0) {
+				
+				site = siteService.getSiteById(dto.getSiteId());
+				mortuaryRepo.setSite(site);
+				
+			} else if(dto.getCodeSite() != null) {
+				
+				site = siteService.getSiteByCodeSIte(dto.getCodeSite());
+				mortuaryRepo.setSite(site);
+				
+			} else {
+				
+				throw new EntityNotFoundException("Site doen't exist");
+				
+			}
 			
 		}
-		
-		MortuaryRepository mortuaryRepo = new MortuaryRepository();
 		
 		if(dto.getId() != null) {
 			mortuaryRepo.setId(dto.getId());
 		}
-		mortuaryRepo.setSite(site);
+		if(dto.getCodeSite() != null) {
+			mortuaryRepo.setCodeSite(dto.getCodeSite());
+		}
 		mortuaryRepo.setCodeSite(dto.getCodeSite());
 		mortuaryRepo.setSiteNumber(dto.getSiteNumber());
 		mortuaryRepo.setIssueNumber(dto.getIssueNumber());

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,6 +98,31 @@ public class MortuaryRepositoryController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param mortuaryRepo
+	 * @return
+	 */
+	@PutMapping("/mortuary-repo")
+	public ResponseEntity<MortuaryRepository> updateExistingMortuaryRepositoryInDatabase(@RequestBody MortuaryCreateDto dto){
+		
+		try {
+			
+			log.info("Trying to update an existing mortuary repository in database");
+			
+			MortuaryRepository updateMortuaryRepo = mortuaryRepositoryService.updateExistingMortuaryRepositoryInDatabase(dto);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updateMortuaryRepo);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			
 		}
 		
