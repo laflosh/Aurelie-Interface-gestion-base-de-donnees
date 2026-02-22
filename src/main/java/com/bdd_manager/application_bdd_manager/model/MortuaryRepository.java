@@ -51,6 +51,9 @@ public class MortuaryRepository {
 	@Column(name = "state_of_sepulture")
 	private String stateOfSepulture;
 	
+	@Column(name = "orientation")
+	private String orientation;
+	
 	@Column(name = "tpq")
 	private Integer tpq;
 	
@@ -142,6 +145,14 @@ public class MortuaryRepository {
 		this.stateOfSepulture = stateOfSepulture;
 	}
 	
+	public String getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
+	}
+
 	public Integer getTpq() {
 		return tpq;
 	}

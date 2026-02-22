@@ -108,6 +108,7 @@ public class MortuaryRepositoryService {
 		mortuaryRepo.setSubtype(dto.getSubtype());
 		mortuaryRepo.setBurialType(dto.getBurialType());
 		mortuaryRepo.setStateOfSepulture(dto.getStateOfSepulture());
+		mortuaryRepo.setOrientation(dto.getOrientation());
 		mortuaryRepo.setTpq(dto.getTpq());
 		mortuaryRepo.setTaq(dto.getTaq());
 		mortuaryRepo.setTimeline(dto.getTimeline());

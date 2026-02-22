@@ -21,6 +21,8 @@ public class MortuaryCreateDto {
 	private String burialType;
 
 	private String stateOfSepulture;
+	
+	private String orientation;
 
 	private Integer tpq;
 
@@ -120,6 +122,14 @@ public class MortuaryCreateDto {
 
 	public void setStateOfSepulture(String stateOfSepulture) {
 		this.stateOfSepulture = stateOfSepulture;
+	}
+
+	public String getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
 	}
 
 	public Integer getTpq() {
