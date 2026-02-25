@@ -11,6 +11,6 @@ import com.bdd_manager.application_bdd_manager.model.MortuaryRepository;
 @Repository
 public interface MortuaryRepositoryRepository extends CrudRepository<MortuaryRepository, Integer>{
 
-	
+	public MortuaryRepository findByIssueNumber(String issue);
 	
 }

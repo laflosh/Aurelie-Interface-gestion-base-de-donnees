@@ -5,13 +5,15 @@ package com.bdd_manager.application_bdd_manager.model.dto;
  */
 public class FurnitureDto {
 
-	private int id;
+	private Integer id;
 	
-	private int mortuaryRepositoryId;
+	private Integer mortuaryRepositoryId;
 	
 	private String issueNumber;
 	
 	private String furnitureNumber;
+	
+	private String furnitureNature;
 	
 	private String feature;
 	
@@ -39,9 +41,9 @@ public class FurnitureDto {
 	
 	private String interpratation;
 	
-	private int tpq;
+	private Integer tpq;
 	
-	private int taq;
+	private Integer taq;
 	
 	private String reference;
 	
@@ -51,19 +53,19 @@ public class FurnitureDto {
 
 	private String picture;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getMortuaryRepositoryId() {
+	public Integer getMortuaryRepositoryId() {
 		return mortuaryRepositoryId;
 	}
 
-	public void setMortuaryRepositoryId(int mortuaryRepositoryId) {
+	public void setMortuaryRepositoryId(Integer mortuaryRepositoryId) {
 		this.mortuaryRepositoryId = mortuaryRepositoryId;
 	}
 
@@ -187,19 +189,19 @@ public class FurnitureDto {
 		this.interpratation = interpratation;
 	}
 
-	public int getTpq() {
+	public Integer getTpq() {
 		return tpq;
 	}
 
-	public void setTpq(int tpq) {
+	public void setTpq(Integer tpq) {
 		this.tpq = tpq;
 	}
 
-	public int getTaq() {
+	public Integer getTaq() {
 		return taq;
 	}
 
-	public void setTaq(int taq) {
+	public void setTaq(Integer taq) {
 		this.taq = taq;
 	}
 
@@ -234,5 +236,14 @@ public class FurnitureDto {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
+	public String getFurnitureNature() {
+		return furnitureNature;
+	}
+
+	public void setFurnitureNature(String furnitureNature) {
+		this.furnitureNature = furnitureNature;
+	}
+	
 	
 }

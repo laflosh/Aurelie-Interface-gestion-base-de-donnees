@@ -22,13 +22,16 @@ public class Furniture {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 	
 	@Column(name = "issue_number")
 	private String issueNumber;
 	
 	@Column(name = "furniture_number")
 	private String furnitureNumber;
+	
+	@Column(name = "furniture_nature")
+	private String furnitureNature;
 	
 	@Column(name = "feature")
 	private String feature;
@@ -67,10 +70,10 @@ public class Furniture {
 	private String status;
 	
 	@Column(name = "tpq")
-	private int tpq;
+	private Integer tpq;
 	
 	@Column(name = "taq")
-	private int taq;
+	private Integer taq;
 	
 	@Column(name = "reference")
 	private String reference;
@@ -93,11 +96,11 @@ public class Furniture {
 	//@JsonIgnore
 	private MortuaryRepository mortuaryRepository;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -205,19 +208,19 @@ public class Furniture {
 		this.status = status;
 	}
 
-	public int getTpq() {
+	public Integer getTpq() {
 		return tpq;
 	}
 
-	public void setTpq(int tpq) {
+	public void setTpq(Integer tpq) {
 		this.tpq = tpq;
 	}
 
-	public int getTaq() {
+	public Integer getTaq() {
 		return taq;
 	}
 
-	public void setTaq(int taq) {
+	public void setTaq(Integer taq) {
 		this.taq = taq;
 	}
 
@@ -275,6 +278,14 @@ public class Furniture {
 
 	public void setInventoryNumber(String inventoryNumber) {
 		this.inventoryNumber = inventoryNumber;
+	}
+
+	public String getFurnitureNature() {
+		return furnitureNature;
+	}
+
+	public void setFurnitureNature(String furnitureNature) {
+		this.furnitureNature = furnitureNature;
 	}
 	
 }

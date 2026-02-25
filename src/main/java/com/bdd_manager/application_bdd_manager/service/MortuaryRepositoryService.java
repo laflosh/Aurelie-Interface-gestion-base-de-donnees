@@ -72,6 +72,20 @@ public class MortuaryRepositoryService {
 	}
 	
 	/**
+	 * @param issue
+	 * @return
+	 */
+	public MortuaryRepository getOneMortuaryRepositoryByIssueNumber(String issue) {
+		
+		log.info("Fetch one mortuary repo by issue number");
+		
+		MortuaryRepository mortuaryRepo = mortuaryRepositoryRepository.findByIssueNumber(issue);
+		
+		return mortuaryRepo;
+		
+	}
+	
+	/**
 	 * @param mortuaryRepo
 	 * @return
 	 * @throws Exception 
@@ -201,9 +215,6 @@ public class MortuaryRepositoryService {
 		
 		if(dto.getId() != null) {
 			mortuaryRepo.setId(dto.getId());
-		}
-		if(dto.getCodeSite() != null) {
-			mortuaryRepo.setCodeSite(dto.getCodeSite());
 		}
 		mortuaryRepo.setCodeSite(dto.getCodeSite());
 		mortuaryRepo.setSiteNumber(dto.getSiteNumber());
