@@ -1,6 +1,6 @@
 package com.bdd_manager.application_bdd_manager.model.dto;
 
-public class MortuaryCreateDto {
+public class MortuaryRepoDto {
 
 	private Integer id;
 	

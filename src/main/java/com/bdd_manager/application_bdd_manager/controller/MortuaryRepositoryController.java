@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bdd_manager.application_bdd_manager.model.MortuaryRepository;
-import com.bdd_manager.application_bdd_manager.model.dto.MortuaryCreateDto;
+import com.bdd_manager.application_bdd_manager.model.dto.MortuaryRepoDto;
 import com.bdd_manager.application_bdd_manager.service.MortuaryRepositoryService;
 
 /**
@@ -35,7 +35,7 @@ public class MortuaryRepositoryController {
 	 * @return
 	 */
 	@PostMapping("/mortuary-repo")
-	public ResponseEntity<MortuaryRepository> addMortuaryRepositoryInDatabase(@RequestBody MortuaryCreateDto dto){
+	public ResponseEntity<MortuaryRepository> addMortuaryRepositoryInDatabase(@RequestBody MortuaryRepoDto dto){
 		
 		try {
 			
@@ -109,7 +109,7 @@ public class MortuaryRepositoryController {
 	 * @return
 	 */
 	@PutMapping("/mortuary-repo")
-	public ResponseEntity<MortuaryRepository> updateExistingMortuaryRepositoryInDatabase(@RequestBody MortuaryCreateDto dto){
+	public ResponseEntity<MortuaryRepository> updateExistingMortuaryRepositoryInDatabase(@RequestBody MortuaryRepoDto dto){
 		
 		try {
 			

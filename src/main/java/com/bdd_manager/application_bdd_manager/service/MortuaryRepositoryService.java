@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bdd_manager.application_bdd_manager.model.MortuaryRepository;
 import com.bdd_manager.application_bdd_manager.model.Site;
-import com.bdd_manager.application_bdd_manager.model.dto.MortuaryCreateDto;
+import com.bdd_manager.application_bdd_manager.model.dto.MortuaryRepoDto;
 import com.bdd_manager.application_bdd_manager.repository.MortuaryRepositoryRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -31,7 +31,7 @@ public class MortuaryRepositoryService {
 	 * @return
 	 * @throws Exception
 	 */
-	public MortuaryRepository addMortuaryRepositoryInDatabase(MortuaryCreateDto dto) throws Exception {
+	public MortuaryRepository addMortuaryRepositoryInDatabase(MortuaryRepoDto dto) throws Exception {
 
 		MortuaryRepository mortuaryRepo = mortuaryRepoDtoToObject(dto);
 		
@@ -76,7 +76,7 @@ public class MortuaryRepositoryService {
 	 * @return
 	 * @throws Exception 
 	 */
-	public MortuaryRepository updateExistingMortuaryRepositoryInDatabase(MortuaryCreateDto dto) throws Exception {
+	public MortuaryRepository updateExistingMortuaryRepositoryInDatabase(MortuaryRepoDto dto) throws Exception {
 		
 		MortuaryRepository existingMortuaryRepo = getOneMortuaryRepositoryById(dto.getId());
 		MortuaryRepository mortuaryRepo = mortuaryRepoDtoToObject(dto);
@@ -173,7 +173,7 @@ public class MortuaryRepositoryService {
 	 * @return
 	 * @throws Exception
 	 */
-	private MortuaryRepository mortuaryRepoDtoToObject(MortuaryCreateDto dto) throws Exception {
+	private MortuaryRepository mortuaryRepoDtoToObject(MortuaryRepoDto dto) throws Exception {
 		
 		MortuaryRepository mortuaryRepo = new MortuaryRepository();
 		
