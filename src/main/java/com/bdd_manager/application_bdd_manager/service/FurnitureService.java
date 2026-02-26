@@ -54,6 +54,21 @@ public class FurnitureService {
 		return furnitures;
 		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Furniture getOneFurnitureByIdInDatabse(int id) {
+
+		log.info("Fetch one furniture by id in database");
+		
+		Furniture furniture = furnitureRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Furniture doesn't exist"));
+		
+		return furniture;
+		
+	}
 
 	/**
 	 * @param dto
