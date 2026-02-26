@@ -41,6 +41,19 @@ public class FurnitureService {
 		return newFurniture;
 		
 	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<Furniture> getAllFurnitureInDatabase() {
+
+		log.info("Fetch all furnitures in database");
+		
+		Iterable<Furniture> furnitures = furnitureRepository.findAll();
+		
+		return furnitures;
+		
+	}
 
 	/**
 	 * @param dto
@@ -50,19 +63,25 @@ public class FurnitureService {
 
 		Furniture furniture = new Furniture();
 		
-		if(dto.getMortuaryRepositoryId() != null && dto.getMortuaryRepositoryId() > 0) {
+		if(dto.getId() == null) {
 			
-			MortuaryRepository mortuaryRepo = mortuaryRepositoryService.getOneMortuaryRepositoryById(dto.getMortuaryRepositoryId());
-			furniture.setMortuaryRepository(mortuaryRepo);
+			MortuaryRepository mortuaryRepo = new MortuaryRepository();
 			
-		} else if(dto.getIssueNumber() != null) {
-			
-			MortuaryRepository mortuaryRepo = mortuaryRepositoryService.getOneMortuaryRepositoryByIssueNumber(dto.getIssueNumber());
-			furniture.setMortuaryRepository(mortuaryRepo);
-			
-		} else {
+			if(dto.getMortuaryRepositoryId() != null && dto.getMortuaryRepositoryId() > 0) {
+				
+				mortuaryRepo = mortuaryRepositoryService.getOneMortuaryRepositoryById(dto.getMortuaryRepositoryId());
+				furniture.setMortuaryRepository(mortuaryRepo);
+				
+			} else if(dto.getIssueNumber() != null) {
+				
+				mortuaryRepo = mortuaryRepositoryService.getOneMortuaryRepositoryByIssueNumber(dto.getIssueNumber());
+				furniture.setMortuaryRepository(mortuaryRepo);
+				
+			} else {
 
-			throw new EntityNotFoundException("Mortuary Repository doen't exist");
+				throw new EntityNotFoundException("Mortuary Repository doen't exist");
+				
+			}
 			
 		}
 		
