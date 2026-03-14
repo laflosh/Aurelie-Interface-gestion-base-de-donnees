@@ -70,6 +70,10 @@ public class FurnitureService {
 		
 	}
 	
+	/**
+	 * @param dto
+	 * @return
+	 */
 	public Furniture updateExistingFurnitureInDatabase(FurnitureDto dto) {
 
 		Furniture furniture = furnitureDtoToObject(dto);
@@ -168,6 +172,17 @@ public class FurnitureService {
 		Furniture updateFurniture = furnitureRepository.save(existingFurniture);
 		
 		return updateFurniture;
+		
+	}
+	
+	/**
+	 * @param id
+	 */
+	public void deleteExistingFurnitureInDatabse(int id) {
+		
+		log.info("Delete an existing furniture in database");
+		
+		furnitureRepository.deleteById(id);
 		
 	}
 
