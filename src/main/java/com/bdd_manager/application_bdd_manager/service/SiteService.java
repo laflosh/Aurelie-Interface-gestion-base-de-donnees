@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bdd_manager.application_bdd_manager.model.Site;
+import com.bdd_manager.application_bdd_manager.model.dto.SiteDto;
 import com.bdd_manager.application_bdd_manager.repository.SiteRepository;
 
 /**
@@ -23,8 +24,10 @@ public class SiteService {
 	 * @param site
 	 * @return
 	 */
-	public Site addNewSiteInDatabase(Site site) {
+	public Site addNewSiteInDatabase(SiteDto dto) {
 
+		Site site = transferDtoToObject(dto);
+		
 		log.info("Add new site in database");
 		
 		Site newSite = siteRepository.save(site);
@@ -62,6 +65,10 @@ public class SiteService {
 		
 	}
 	
+	/**
+	 * @param codeSite
+	 * @return
+	 */
 	public Site getSiteByCodeSIte(String codeSite) {
 		
 		log.info("Get one site by code site in the database");
@@ -76,8 +83,9 @@ public class SiteService {
 	 * @param site
 	 * @return
 	 */
-	public Site updateExistingSiteInDatabase(Site site) {
+	public Site updateExistingSiteInDatabase(SiteDto dto) {
 
+		Site site = transferDtoToObject(dto);
 		Site existingSite = getSiteById(site.getId());
 		
 		if(site.getCodeSite() != null && !site.getCodeSite().equals(existingSite.getCodeSite())) {
@@ -184,6 +192,40 @@ public class SiteService {
 		log.info("Delete an existing site in database");
 		
 		siteRepository.deleteById(id);
+		
+	}
+	
+	private Site transferDtoToObject(SiteDto dto) {
+		
+		Site site = new Site();
+		
+		if(dto.getId() != null) {
+			site.setId(dto.getId());
+		}
+		site.setCodeSite(dto.getCodeSite());
+		site.setSiteNumber(dto.getSiteNumber());
+		site.setRegion(dto.getRegion());
+		site.setDepartment(dto.getDepartment());
+		site.setMicroRegion(dto.getMicroRegion());
+		site.setAncientName(dto.getAncientName());
+		site.setModernName(dto.getModernName());
+		site.setSite(dto.getSite());
+		site.setLocality(dto.getLocality());
+		site.setLatitude(dto.getLatitude());
+		site.setLongitude(dto.getLongitude());
+		site.setTpq(dto.getTpq());
+		site.setTaq(dto.getTaq());
+		site.setOccupation(dto.getOccupation());
+		site.setNatureOfExcavation(dto.getNatureOfExcavation());
+		site.setTotalNumberSepultures(dto.getTotalNumberSepultures());
+		site.setImmatureSepultureNumber(dto.getImmatureSepultureNumber());
+		site.setNumberSepultureStudied(dto.getNumberSepultureStudied());
+		site.setDateExcavation(dto.getDateExcavation());
+		site.setObservation(dto.getObservation());
+		site.setReference(dto.getReference());
+		site.setPicture(dto.getPicture());
+		
+		return site;
 		
 	}
 	

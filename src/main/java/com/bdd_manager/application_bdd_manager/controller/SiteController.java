@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bdd_manager.application_bdd_manager.model.Site;
+import com.bdd_manager.application_bdd_manager.model.dto.SiteDto;
 import com.bdd_manager.application_bdd_manager.service.SiteService;
 
 /**
@@ -34,7 +35,7 @@ public class SiteController {
 	 * @return
 	 */
 	@PostMapping("/site")
-	public ResponseEntity<Site> addSiteInDatabase(@RequestBody Site site){
+	public ResponseEntity<Site> addSiteInDatabase(@RequestBody SiteDto site){
 		
 		try {
 			
@@ -108,7 +109,7 @@ public class SiteController {
 	 * @return
 	 */
 	@PutMapping("/site")
-	public ResponseEntity<Site> updateExistingSiteInDatabse(@RequestBody Site site){
+	public ResponseEntity<Site> updateExistingSiteInDatabse(@RequestBody SiteDto site){
 		
 		try {
 			
