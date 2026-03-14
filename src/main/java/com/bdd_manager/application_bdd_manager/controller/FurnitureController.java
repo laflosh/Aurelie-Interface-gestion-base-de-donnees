@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -97,6 +98,31 @@ public class FurnitureController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.OK).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param furniture
+	 * @return
+	 */
+	@PutMapping("/furniture")
+	public ResponseEntity<Furniture> updateExistingFurnitureInDatabase(@RequestBody FurnitureDto furniture){
+		
+		try {
+			
+			log.info("Trying to update an exiting furniture in database");
+			
+			Furniture updateFurniture = furnitureService.updateExistingFurnitureInDatabase(furniture);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updateFurniture);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			
 		}
 		

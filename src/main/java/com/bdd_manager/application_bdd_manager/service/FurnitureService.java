@@ -69,6 +69,107 @@ public class FurnitureService {
 		return furniture;
 		
 	}
+	
+	public Furniture updateExistingFurnitureInDatabase(FurnitureDto dto) {
+
+		Furniture furniture = furnitureDtoToObject(dto);
+		
+		Furniture existingFurniture = getOneFurnitureByIdInDatabse(dto.getId());
+		
+		if(furniture.getIssueNumber() != null && !furniture.getIssueNumber().equals(existingFurniture.getIssueNumber())) {
+			existingFurniture.setIssueNumber(furniture.getIssueNumber());
+		}
+		
+		if(furniture.getFurnitureNumber() != null && !furniture.getFurnitureNumber().equals(existingFurniture.getFurnitureNumber())) {
+			existingFurniture.setFurnitureNumber(furniture.getFurnitureNumber());
+		}
+		
+		if(furniture.getFurnitureNature() != null && !furniture.getFurnitureNature().equals(existingFurniture.getFurnitureNature())) {
+			existingFurniture.setFurnitureNature(furniture.getFurnitureNature());
+		}
+		
+		if(furniture.getFeature() != null && !furniture.getFeature().equals(existingFurniture.getFeature())) {
+			existingFurniture.setFeature(furniture.getFeature());
+		}
+		
+		if(furniture.getDomain() != null && !furniture.getDomain().equals(existingFurniture.getDomain())) {
+			existingFurniture.setDomain(furniture.getDomain());
+		}
+		
+		if(furniture.getDesignation() != null && !furniture.getDesignation().equals(existingFurniture.getDesignation())) {
+			existingFurniture.setDesignation(furniture.getDesignation());
+		}
+		
+		if(furniture.getTypology() != null && !furniture.getTypology().equals(existingFurniture.getTypology())) {
+			existingFurniture.setTypology(furniture.getTypology());
+		}
+		
+		if(furniture.getMaterial() != null && !furniture.getMaterial().equals(existingFurniture.getMaterial())) {
+			existingFurniture.setMaterial(furniture.getMaterial());
+		}
+		
+		if(furniture.getQuality() != null && !furniture.getQuality().equals(existingFurniture.getQuality())) {
+			existingFurniture.setQuality(furniture.getQuality());
+		}
+		
+		if(furniture.getColor() != null && !furniture.getColor().equals(existingFurniture.getColor())) {
+			existingFurniture.setColor(furniture.getColor());
+		}
+		
+		if(furniture.getDimension() != null && !furniture.getDimension().equals(existingFurniture.getDimension())) {
+			existingFurniture.setDimension(furniture.getDimension());
+		}
+		
+		if(furniture.getOrigin() != null && !furniture.getOrigin().equals(existingFurniture.getOrigin())) {
+			existingFurniture.setOrigin(furniture.getOrigin());
+		}
+		
+		if(furniture.getDescription() != null && !furniture.getDescription().equals(existingFurniture.getDescription())) {
+			existingFurniture.setDescription(furniture.getDescription());
+		}
+		
+		if(furniture.getConservation() != null && !furniture.getConservation().equals(existingFurniture.getConservation())) {
+			existingFurniture.setConservation(furniture.getConservation());
+		}
+		
+		if(furniture.getStatus() != null && !furniture.getStatus().equals(existingFurniture.getStatus())) {
+			existingFurniture.setStatus(furniture.getStatus());
+		}
+		
+		if(furniture.getTpq() != null && furniture.getTpq() != existingFurniture.getTpq()) {
+			existingFurniture.setTpq(furniture.getTpq());
+		}
+		
+		if(furniture.getTaq() != null && furniture.getTaq() != existingFurniture.getTaq()) {
+			existingFurniture.setTaq(furniture.getTaq());
+		}
+		
+		if(furniture.getReference() != null && !furniture.getReference().equals(existingFurniture.getReference())) {
+			existingFurniture.setReference(furniture.getReference());
+		}
+		
+		if(furniture.getStorageLocation() != null && !furniture.getStorageLocation().equals(existingFurniture.getStorageLocation())) {
+			existingFurniture.setStorageLocation(furniture.getStorageLocation());
+		}
+		
+		if(furniture.getInventoryNumber() != null && !furniture.getInventoryNumber().equals(existingFurniture.getInventoryNumber())) {
+			existingFurniture.setInventoryNumber(furniture.getInventoryNumber());
+		}
+		
+		if(furniture.getPicture() != null && !furniture.getPicture().equals(existingFurniture.getPicture())) {
+			existingFurniture.setPicture(furniture.getPicture());
+		}
+		
+		if(furniture.getInterpratation() != null && !furniture.getInterpratation().equals(existingFurniture.getInterpratation())) {
+			existingFurniture.setInterpratation(furniture.getInterpratation());
+		}
+		
+		log.info("Updating an exiting furniture in database");
+		Furniture updateFurniture = furnitureRepository.save(existingFurniture);
+		
+		return updateFurniture;
+		
+	}
 
 	/**
 	 * @param dto
@@ -105,6 +206,7 @@ public class FurnitureService {
 		}
 		furniture.setIssueNumber(dto.getIssueNumber());
 		furniture.setFurnitureNumber(dto.getFurnitureNumber());
+		furniture.setFurnitureNature(dto.getFurnitureNature());
 		furniture.setFeature(dto.getFeature());
 		furniture.setDomain(dto.getDomain());
 		furniture.setDesignation(dto.getDesignation());
