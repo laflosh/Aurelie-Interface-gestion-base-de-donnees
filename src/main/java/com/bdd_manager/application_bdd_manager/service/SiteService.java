@@ -195,6 +195,10 @@ public class SiteService {
 		
 	}
 	
+	/**
+	 * @param dto
+	 * @return
+	 */
 	private Site transferDtoToObject(SiteDto dto) {
 		
 		Site site = new Site();
