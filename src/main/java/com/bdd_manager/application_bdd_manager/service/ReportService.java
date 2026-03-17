@@ -42,6 +42,19 @@ public class ReportService {
 	}
 	
 	/**
+	 * @return
+	 */
+	public Iterable<Report> getAllReportInDatabase() {
+
+		log.info("Fetch all report in databse");
+		
+		Iterable<Report> reports = reportRepository.findAll();
+		
+		return reports;
+		
+	}
+	
+	/**
 	 * @param dto
 	 * @return
 	 */
