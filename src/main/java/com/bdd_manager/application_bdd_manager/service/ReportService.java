@@ -103,6 +103,17 @@ public class ReportService {
 	}
 	
 	/**
+	 * @param id
+	 */
+	public void deleteExistingReportInDatabase(int id) {
+		
+		log.info("Delete existing report in database by id");
+		
+		reportRepository.deleteById(id);
+		
+	}
+	
+	/**
 	 * @param dto
 	 * @return
 	 */

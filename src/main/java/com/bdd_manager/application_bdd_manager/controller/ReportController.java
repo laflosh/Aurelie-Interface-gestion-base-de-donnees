@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -123,6 +124,31 @@ public class ReportController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/report/{id}")
+	public ResponseEntity<String> deleteExistingReportInDatabase(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to delete an existing report in database");
+			
+			reportService.deleteExistingReportInDatabase(id);
+			
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Report delete");
+			
+		} catch(Exception e){
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 			
 		}
 		
