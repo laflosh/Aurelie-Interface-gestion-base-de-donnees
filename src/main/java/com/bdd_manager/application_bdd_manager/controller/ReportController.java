@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +34,7 @@ public class ReportController {
 	 * @return
 	 */
 	@PostMapping("/report")
-	public ResponseEntity<Report> addReportInDatabase(ReportDto report){
+	public ResponseEntity<Report> addReportInDatabase(@RequestBody ReportDto report){
 		
 		try {
 			
@@ -70,6 +73,56 @@ public class ReportController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/report/{id}")
+	public ResponseEntity<Report> getOneReportByIdInDatabase(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to fetch one report by id in database");
+			
+			Report report = reportService.getOneReportByInDatabase(id);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(report);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param report
+	 * @return
+	 */
+	@PutMapping("/report")
+	public ResponseEntity<Report> updateExistingReportInDatabase(@RequestBody ReportDto report){
+		
+		try {
+			
+			log.info("Trying top update an existing report in database");
+			
+			Report updateReport = reportService.updateExistingReportInDatabase(report);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updateReport);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			
 		}
 		

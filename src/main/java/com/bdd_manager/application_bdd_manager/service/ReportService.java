@@ -55,6 +55,54 @@ public class ReportService {
 	}
 	
 	/**
+	 * @param id
+	 * @return
+	 */
+	public Report getOneReportByInDatabase(int id) {
+
+		log.info("Fetch one report by id in database");
+		
+		Report report = reportRepository.findById(id)
+					.orElseThrow(() -> new RuntimeException("Report not found"));
+		
+		return report;
+		
+	}
+	
+	/**
+	 * @param report
+	 * @return
+	 */
+	public Report updateExistingReportInDatabase(ReportDto dto) {
+
+		Report report = dtoToObjectReport(dto);
+		Report existingReport = getOneReportByInDatabase(dto.getId());
+		
+		if(report.getSubject() != null && !report.getSubject().equals(existingReport.getSubject())) {
+			existingReport.setSubject(report.getSubject());
+		}
+		
+		if(report.getMessage() != null && !report.getMessage().equals(existingReport.getMessage())) {
+			existingReport.setMessage(report.getMessage());
+		}
+		
+		if(report.getEmergency() != null && !report.getEmergency().equals(existingReport.getEmergency())) {
+			existingReport.setEmergency(report.getEmergency());
+		}
+		
+		if(report.getPicture() != null && !report.getPicture().equals(existingReport.getPicture())) {
+			existingReport.setPicture(report.getPicture());
+		}
+		
+		log.info("Update an existing report in database");
+		
+		Report updateReport = reportRepository.save(existingReport);
+		
+		return updateReport;
+		
+	}
+	
+	/**
 	 * @param dto
 	 * @return
 	 */
