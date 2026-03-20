@@ -127,6 +127,22 @@ public class UserService {
 		return userRepository.save(user);
 		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public User unSetSoftDeleteForUser(int id) {
+
+		log.info("Unset soft delete for an user");
+		
+		User user = getUserById(id);
+		
+		user.setIsDeleted(false);
+		
+		return userRepository.save(user);
+		
+	}
 
 	/**
 	 * @param id
@@ -139,6 +155,10 @@ public class UserService {
 		
 	}
 	
+	/**
+	 * @param dto
+	 * @return
+	 */
 	private User transferDtoToUserObject(UserDto dto) {
 		
 		User user = new User();
