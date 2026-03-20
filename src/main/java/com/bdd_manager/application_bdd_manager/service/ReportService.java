@@ -30,6 +30,7 @@ public class ReportService {
 		
 		Date date = new Date();
 		dto.setDate(date);
+		dto.setIsDeleted(false);
 		
 		Report report = dtoToObjectReport(dto);
 		
@@ -48,9 +49,22 @@ public class ReportService {
 
 		log.info("Fetch all report in databse");
 		
-		Iterable<Report> reports = reportRepository.findAll();
+		Iterable<Report> reports = reportRepository.getAllReportNotSoftDelete();
 		
 		return reports;
+		
+	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<Report> getAllSoftDeleteReport() {
+
+		log.info("Get all soft delete reports in database");
+		
+		Iterable<Report> softDeleteReports = reportRepository.getAllReportSoftDelete();
+		
+		return softDeleteReports;
 		
 	}
 	

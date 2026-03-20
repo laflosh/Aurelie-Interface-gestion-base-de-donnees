@@ -80,6 +80,30 @@ public class ReportController {
 	}
 	
 	/**
+	 * @return
+	 */
+	@GetMapping("/report/soft-delete")
+	public ResponseEntity<Iterable<Report>> getAllSoftDeleteReport(){
+		
+		try {
+			
+			log.info("Trying to get all soft delete report in database");
+			
+			Iterable<Report> softDeleteReports = reportService.getAllSoftDeleteReport();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(softDeleteReports);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
 	 * @param id
 	 * @return
 	 */
