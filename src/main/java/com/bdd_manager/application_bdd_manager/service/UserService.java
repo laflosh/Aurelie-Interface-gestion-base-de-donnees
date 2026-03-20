@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bdd_manager.application_bdd_manager.model.User;
+import com.bdd_manager.application_bdd_manager.model.dto.UserDto;
 import com.bdd_manager.application_bdd_manager.repository.UserRepository;
 
 /**
@@ -24,12 +25,14 @@ public class UserService {
 	PasswordEncoder encoder;
 
 	/**
-	 * @param user
+	 * @param dto
 	 * @return
 	 */
-	public User addUserInDatabase(User user) {
+	public User addUserInDatabase(UserDto dto) {
 		
-		user.setPassword(encoder.encode(user.getPassword()));
+		dto.setPassword(encoder.encode(dto.getPassword()));
+		
+		User user = transferDtoToUserObject(dto);
 		
 		log.info("Saving a new user in database");
 		
@@ -71,9 +74,10 @@ public class UserService {
 	 * @param user
 	 * @return
 	 */
-	public User updateExistingUser(User user) {
+	public User updateExistingUser(UserDto dto) {
 
-		User existingUser = getUserById(user.getId());
+		User user = transferDtoToUserObject(dto);
+		User existingUser = getUserById(dto.getId());
 		
 		if(user.getFirstname() != null && !user.getFirstname().equals(existingUser.getFirstname())) {
 			existingUser.setFirstname(user.getFirstname());
@@ -115,6 +119,24 @@ public class UserService {
 		log.info("Delete an existing user in the database.");
 		
 		userRepository.deleteById(id);
+		
+	}
+	
+	private User transferDtoToUserObject(UserDto dto) {
+		
+		User user = new User();
+		
+		if(dto.getId() != null) {
+			user.setId(dto.getId());
+		}
+		user.setFirstname(dto.getFirstname());
+		user.setName(dto.getName());
+		user.setMail(dto.getMail());
+		user.setPassword(dto.getPassword());
+		user.setRole(dto.getRole());
+		user.setUsername(dto.getUsername());
+		
+		return user;
 		
 	}
 	

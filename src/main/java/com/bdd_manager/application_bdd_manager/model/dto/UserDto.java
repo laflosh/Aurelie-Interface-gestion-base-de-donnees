@@ -1,40 +1,22 @@
-package com.bdd_manager.application_bdd_manager.model;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+package com.bdd_manager.application_bdd_manager.model.dto;
 
 /**
  * 
  */
-@Entity
-@Table(name = "app_user")
-public class User {
+public class UserDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "firstname")
 	private String firstname;
 	
-	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "mail")
 	private String mail;
 	
-	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "role")
 	private String role;
 	
-	@Column(name = "username")
 	private String username;
 
 	public Integer getId() {

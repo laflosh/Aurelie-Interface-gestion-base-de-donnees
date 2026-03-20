@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bdd_manager.application_bdd_manager.model.User;
+import com.bdd_manager.application_bdd_manager.model.dto.UserDto;
 import com.bdd_manager.application_bdd_manager.service.UserService;
 
 /**
@@ -34,7 +35,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/user")
-	public ResponseEntity<User> addUserInDatabase(@RequestBody User user){
+	public ResponseEntity<User> addUserInDatabase(@RequestBody UserDto user){
 		
 		try {
 			
@@ -108,7 +109,7 @@ public class UserController {
 	 * @return
 	 */
 	@PutMapping("/user")
-	public ResponseEntity<User> updateExistingUser(@RequestBody User user){
+	public ResponseEntity<User> updateExistingUser(@RequestBody UserDto user){
 		
 		try {
 			
