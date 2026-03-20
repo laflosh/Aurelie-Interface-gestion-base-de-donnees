@@ -133,6 +133,31 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
+	@PutMapping("/user/{id}/soft-delete")
+	public ResponseEntity<User> setSoftDeleteForUser(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to soft delete an user");
+			
+			User updateUser = userService.setSoftDeleteForUser(id);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updateUser);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<?> deleteExistingUser(@PathVariable int id){
 		

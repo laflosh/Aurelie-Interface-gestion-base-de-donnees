@@ -31,6 +31,7 @@ public class UserService {
 	public User addUserInDatabase(UserDto dto) {
 		
 		dto.setPassword(encoder.encode(dto.getPassword()));
+		dto.setIsDeleted(false);
 		
 		User user = transferDtoToUserObject(dto);
 		
@@ -110,6 +111,22 @@ public class UserService {
 		return updatedUser;
 		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public User setSoftDeleteForUser(int id) {
+
+		log.info("Set soft delete for an user");
+		
+		User user = getUserById(id);
+		
+		user.setIsDeleted(true);
+		
+		return userRepository.save(user);
+		
+	}
 
 	/**
 	 * @param id
@@ -135,6 +152,7 @@ public class UserService {
 		user.setPassword(dto.getPassword());
 		user.setRole(dto.getRole());
 		user.setUsername(dto.getUsername());
+		user.setIsDeleted(dto.getIsDeleted());
 		
 		return user;
 		

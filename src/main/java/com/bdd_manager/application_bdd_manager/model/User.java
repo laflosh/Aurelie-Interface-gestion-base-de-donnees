@@ -36,6 +36,9 @@ public class User {
 	
 	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
 
 	public Integer getId() {
 		return id;
@@ -91,6 +94,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }

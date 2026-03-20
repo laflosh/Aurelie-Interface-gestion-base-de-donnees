@@ -18,6 +18,8 @@ public class UserDto {
 	private String role;
 	
 	private String username;
+	
+	private Boolean isDeleted;
 
 	public Integer getId() {
 		return id;
@@ -73,6 +75,14 @@ public class UserDto {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }
