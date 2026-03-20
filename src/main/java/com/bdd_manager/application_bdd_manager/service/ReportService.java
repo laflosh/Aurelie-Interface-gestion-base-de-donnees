@@ -104,6 +104,22 @@ public class ReportService {
 	
 	/**
 	 * @param id
+	 * @return
+	 */
+	public Report setSoftDeleteForReportObject(int id) {
+
+		log.info("Set soft delete for a report object");
+		
+		Report report = getOneReportByInDatabase(id);
+		
+		report.setIsDeleted(true);
+		
+		return reportRepository.save(report);
+		
+	}
+	
+	/**
+	 * @param id
 	 */
 	public void deleteExistingReportInDatabase(int id) {
 		

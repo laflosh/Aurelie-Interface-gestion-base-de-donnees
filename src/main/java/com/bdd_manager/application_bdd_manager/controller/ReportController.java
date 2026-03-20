@@ -133,6 +133,31 @@ public class ReportController {
 	 * @param id
 	 * @return
 	 */
+	@PutMapping("/report/{id}/soft-delete")
+	public ResponseEntity<Report> setSoftDeleteForReportObject(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to set soft delete for a report");
+			
+			Report updateReport = reportService.setSoftDeleteForReportObject(id);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updateReport);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/report/{id}")
 	public ResponseEntity<String> deleteExistingReportInDatabase(@PathVariable int id){
 		

@@ -35,6 +35,9 @@ public class Report {
 	
 	@Column(name = "picture")
 	private String picture;
+	
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
 
 	public Integer getId() {
 		return id;
@@ -82,6 +85,14 @@ public class Report {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }
