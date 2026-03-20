@@ -120,6 +120,22 @@ public class ReportService {
 	
 	/**
 	 * @param id
+	 * @return
+	 */
+	public Report unSetSoftDeleteForReportObject(int id) {
+		
+		log.info("Unset soft delete for a report object");
+		
+		Report report = getOneReportByInDatabase(id);
+		
+		report.setIsDeleted(false);
+		
+		return reportRepository.save(report);
+		
+	}
+	
+	/**
+	 * @param id
 	 */
 	public void deleteExistingReportInDatabase(int id) {
 		
@@ -145,6 +161,7 @@ public class ReportService {
 		report.setDate(dto.getDate());
 		report.setEmergency(dto.getEmergency());
 		report.setPicture(dto.getPicture());
+		report.setIsDeleted(dto.getIsDeleted());
 		
 		return report;
 		
