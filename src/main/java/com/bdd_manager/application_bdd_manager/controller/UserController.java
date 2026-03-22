@@ -80,6 +80,30 @@ public class UserController {
 	}
 	
 	/**
+	 * @return
+	 */
+	@GetMapping("/user/soft-delete")
+	public ResponseEntity<Iterable<User>> getAllSoftDeleteUserInDatabase(){
+		
+		try {
+			
+			log.info("Trying to fetch all soft delete user in database");
+			
+			Iterable<User> users = userService.getAllSoftDeleteUserInDatabase();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(users);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
 	 * @param id
 	 * @return
 	 */

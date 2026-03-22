@@ -50,7 +50,20 @@ public class UserService {
 		
 		log.info("Fetch all users in the database");
 		
-		Iterable<User> users = userRepository.findAll();
+		Iterable<User> users = userRepository.getAllUserNotSoftDelete();
+		
+		return users;
+		
+	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<User> getAllSoftDeleteUserInDatabase() {
+
+		log.info("Fetch all soft delete users in database");
+		
+		Iterable<User> users = userRepository.getAllUserSoftDelete();
 		
 		return users;
 		
