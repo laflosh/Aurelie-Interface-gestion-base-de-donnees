@@ -32,6 +32,8 @@ public class FurnitureService {
 	 */
 	public Furniture addNewFurnitureInDatabase(FurnitureDto dto) {
 		
+		dto.setIsDeleted(false);
+		
 		Furniture furniture = furnitureDtoToObject(dto);
 		
 		log.info("Saving new furniture in database");
@@ -177,6 +179,22 @@ public class FurnitureService {
 	
 	/**
 	 * @param id
+	 * @return
+	 */
+	public Furniture setSoftDeleteForFurniture(int id) {
+		
+		log.info("Set soft delete for a furniture");
+		
+		Furniture furniture = getOneFurnitureByIdInDatabse(id);
+		
+		furniture.setIsDeleted(true);
+		
+		return furnitureRepository.save(furniture);
+		
+	}
+	
+	/**
+	 * @param id
 	 */
 	public void deleteExistingFurnitureInDatabse(int id) {
 		
@@ -194,7 +212,7 @@ public class FurnitureService {
 
 		Furniture furniture = new Furniture();
 		
-		if(dto.getId() == null) {
+		if(dto.getMortuaryRepositoryId() == null) {
 			
 			MortuaryRepository mortuaryRepo = new MortuaryRepository();
 			
@@ -205,7 +223,12 @@ public class FurnitureService {
 				
 			} else if(dto.getIssueNumber() != null) {
 				
+				log.info(dto.getIssueNumber());
+				
 				mortuaryRepo = mortuaryRepositoryService.getOneMortuaryRepositoryByIssueNumber(dto.getIssueNumber());
+				
+				log.info(mortuaryRepo);
+				
 				furniture.setMortuaryRepository(mortuaryRepo);
 				
 			} else {
@@ -232,6 +255,7 @@ public class FurnitureService {
 		furniture.setDimension(dto.getDimension());
 		furniture.setOrigin(dto.getOrigin());
 		furniture.setDescription(dto.getDescription());
+		furniture.setConservation(dto.getConservation());
 		furniture.setStatus(dto.getStatus());
 		furniture.setInterpratation(dto.getInterpratation());
 		furniture.setTpq(dto.getTpq());
@@ -240,6 +264,7 @@ public class FurnitureService {
 		furniture.setStorageLocation(dto.getStorageLocation());
 		furniture.setInventoryNumber(dto.getInventoryNumber());
 		furniture.setPicture(dto.getPicture());
+		furniture.setIsDeleted(dto.getIsDeleted());
 		
 		return furniture;
 		

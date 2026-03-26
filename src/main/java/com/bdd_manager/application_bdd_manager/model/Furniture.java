@@ -90,6 +90,9 @@ public class Furniture {
 	@Column(name = "interpretation")
 	private String interpratation;
 	
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mortuary_repository_id")
 	@JsonBackReference
@@ -286,6 +289,14 @@ public class Furniture {
 
 	public void setFurnitureNature(String furnitureNature) {
 		this.furnitureNature = furnitureNature;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }

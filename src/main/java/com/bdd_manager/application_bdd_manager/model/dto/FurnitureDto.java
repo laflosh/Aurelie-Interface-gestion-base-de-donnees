@@ -52,6 +52,8 @@ public class FurnitureDto {
 	private String inventoryNumber;
 
 	private String picture;
+	
+	private Boolean isDeleted;
 
 	public Integer getId() {
 		return id;
@@ -244,6 +246,13 @@ public class FurnitureDto {
 	public void setFurnitureNature(String furnitureNature) {
 		this.furnitureNature = furnitureNature;
 	}
-	
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 	
 }

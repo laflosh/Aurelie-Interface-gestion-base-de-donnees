@@ -133,6 +133,31 @@ public class FurnitureController {
 	 * @param id
 	 * @return
 	 */
+	@PutMapping("/furniture/{id}/soft-delete")
+	public ResponseEntity<Furniture> setSoftDeleteForFurniture(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to soft delete a furniture in database");
+			
+			Furniture furniture = furnitureService.setSoftDeleteForFurniture(id);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(furniture);
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/furniture/{id}")
 	public ResponseEntity<String> deleteExistingFurnitureInDatabase(@PathVariable int id){
 		
