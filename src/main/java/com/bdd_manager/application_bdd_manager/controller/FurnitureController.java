@@ -104,6 +104,27 @@ public class FurnitureController {
 		
 	}
 	
+	@GetMapping("/furniture/soft-delete")
+	public ResponseEntity<Iterable<Furniture>> getAllFurnitureSoftDeleteInDatabase(){
+		
+		try {
+			
+			log.info("Trying to fetch all soft deleted furniture in database");
+			
+			Iterable<Furniture> furnitures = furnitureService.getAllFurnitureSoftDeleteInDatabase();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(furnitures);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
 	/**
 	 * @param furniture
 	 * @return

@@ -51,7 +51,7 @@ public class FurnitureService {
 
 		log.info("Fetch all furnitures in database");
 		
-		Iterable<Furniture> furnitures = furnitureRepository.findAll();
+		Iterable<Furniture> furnitures = furnitureRepository.getAllFurnitureNotSoftDelete();
 		
 		return furnitures;
 		
@@ -69,6 +69,19 @@ public class FurnitureService {
 				.orElseThrow(() -> new RuntimeException("Furniture doesn't exist"));
 		
 		return furniture;
+		
+	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<Furniture> getAllFurnitureSoftDeleteInDatabase() {
+
+		log.info("Fetch all soft deleted furniture in database");
+		
+		Iterable<Furniture> furnitures = furnitureRepository.getAllFurnitureSoftDelete();
+		
+		return furnitures;
 		
 	}
 	
