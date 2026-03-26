@@ -154,6 +154,27 @@ public class FurnitureController {
 		
 	}
 	
+	@PutMapping("/furniture/{id}/unset-soft-delete")
+	public ResponseEntity<Furniture> unSetSoftDeleteForFurniture(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to unset soft delete for a furniture");
+			
+			Furniture furniture = furnitureService.unSetSoftDeleteForFurniture(id);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(furniture);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
 	/**
 	 * @param id
 	 * @return

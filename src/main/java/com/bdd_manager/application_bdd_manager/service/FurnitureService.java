@@ -195,6 +195,22 @@ public class FurnitureService {
 	
 	/**
 	 * @param id
+	 * @return
+	 */
+	public Furniture unSetSoftDeleteForFurniture(int id) {
+
+		log.info("Unset soft delete for a furniture");
+		
+		Furniture furniture = getOneFurnitureByIdInDatabse(id);
+		
+		furniture.setIsDeleted(false);
+		
+		return furnitureRepository.save(furniture);
+		
+	}
+	
+	/**
+	 * @param id
 	 */
 	public void deleteExistingFurnitureInDatabse(int id) {
 		
