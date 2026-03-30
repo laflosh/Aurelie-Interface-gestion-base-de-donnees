@@ -135,6 +135,12 @@ public class UserService {
 		
 		User user = getUserById(id);
 		
+		if (user.getIsDeleted()) {
+			
+		    return user;
+		    
+		}
+		
 		user.setIsDeleted(true);
 		
 		return userRepository.save(user);
@@ -150,6 +156,12 @@ public class UserService {
 		log.info("Unset soft delete for an user");
 		
 		User user = getUserById(id);
+		
+		if (!user.getIsDeleted()) {
+			
+		    return user;
+		    
+		}
 		
 		user.setIsDeleted(false);
 		

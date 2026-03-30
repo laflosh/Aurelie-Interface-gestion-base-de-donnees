@@ -126,6 +126,12 @@ public class ReportService {
 		
 		Report report = getOneReportByInDatabase(id);
 		
+		if (report.getIsDeleted()) {
+			
+		    return report;
+		    
+		}
+		
 		report.setIsDeleted(true);
 		
 		return reportRepository.save(report);
@@ -141,6 +147,12 @@ public class ReportService {
 		log.info("Unset soft delete for a report object");
 		
 		Report report = getOneReportByInDatabase(id);
+		
+		if (!report.getIsDeleted()) {
+			
+		    return report;
+		    
+		}
 		
 		report.setIsDeleted(false);
 		

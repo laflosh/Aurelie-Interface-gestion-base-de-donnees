@@ -200,6 +200,12 @@ public class FurnitureService {
 		
 		Furniture furniture = getOneFurnitureByIdInDatabse(id);
 		
+		if (furniture.getIsDeleted()) {
+			
+		    return furniture;
+		    
+		}
+		
 		furniture.setIsDeleted(true);
 		
 		return furnitureRepository.save(furniture);
@@ -215,6 +221,12 @@ public class FurnitureService {
 		log.info("Unset soft delete for a furniture");
 		
 		Furniture furniture = getOneFurnitureByIdInDatabse(id);
+		
+		if (!furniture.getIsDeleted()) {
+			
+		    return furniture;
+		    
+		}
 		
 		furniture.setIsDeleted(false);
 		
