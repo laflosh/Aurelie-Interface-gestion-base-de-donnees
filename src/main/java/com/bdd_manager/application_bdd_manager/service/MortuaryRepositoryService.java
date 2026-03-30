@@ -208,6 +208,38 @@ public class MortuaryRepositoryService {
 		
 		furnitureRepository.saveAll(furnitures);
 		return mortuaryRepositoryRepository.save(mortuaryRepo);
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@Transactional
+	public MortuaryRepository unSetSoftDeleteForMortuaryRepository(int id) {
+
+		log.info("Unset soft delete for mortuary repo in database");
+		
+		MortuaryRepository mortuaryRepo = getOneMortuaryRepositoryById(id);
+		List<Furniture> furnitures = furnitureRepository.findByMortuaryRepositoryId(id);
+		
+		if(!mortuaryRepo.getIsDeleted()) {
+			
+			return mortuaryRepo;
+			
+		}
+		
+		furnitures.forEach(furniture -> {
+			
+			furniture.setIsDeleted(false);
+			
+		});
+		
+		mortuaryRepo.setIsDeleted(false);
+		
+		furnitureRepository.saveAll(furnitures);
+		return mortuaryRepositoryRepository.save(mortuaryRepo);
+		
 	}
 	
 	/**
