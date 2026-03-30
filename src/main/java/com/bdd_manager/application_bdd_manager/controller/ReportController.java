@@ -166,7 +166,7 @@ public class ReportController {
 			
 			Report updateReport = reportService.setSoftDeleteForReportObject(id);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(updateReport);
+			return ResponseEntity.status(HttpStatus.OK).body(updateReport);
 			
 		} catch(Exception e) {
 			
@@ -191,7 +191,7 @@ public class ReportController {
 			
 			Report updateReport = reportService.unSetSoftDeleteForReportObject(id);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(updateReport);
+			return ResponseEntity.status(HttpStatus.OK).body(updateReport);
 			
 		} catch(Exception e) {
 			

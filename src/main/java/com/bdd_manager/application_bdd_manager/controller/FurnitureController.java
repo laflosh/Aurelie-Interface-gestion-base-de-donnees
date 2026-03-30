@@ -163,7 +163,7 @@ public class FurnitureController {
 			
 			Furniture furniture = furnitureService.setSoftDeleteForFurniture(id);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(furniture);
+			return ResponseEntity.status(HttpStatus.OK).body(furniture);
 			
 		}catch(Exception e){
 			
@@ -184,7 +184,7 @@ public class FurnitureController {
 			
 			Furniture furniture = furnitureService.unSetSoftDeleteForFurniture(id);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(furniture);
+			return ResponseEntity.status(HttpStatus.OK).body(furniture);
 			
 		}catch(Exception e) {
 			

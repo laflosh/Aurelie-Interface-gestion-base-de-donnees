@@ -82,6 +82,9 @@ public class MortuaryRepository {
 	@Column(name = "picture")
 	private String picture;
 	
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "site_id")
 	@JsonBackReference
@@ -262,6 +265,14 @@ public class MortuaryRepository {
 
 	public void setSubtype(String subtype) {
 		this.subtype = subtype;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }

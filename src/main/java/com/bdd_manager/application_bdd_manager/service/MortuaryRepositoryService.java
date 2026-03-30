@@ -1,16 +1,21 @@
 package com.bdd_manager.application_bdd_manager.service;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bdd_manager.application_bdd_manager.model.Furniture;
 import com.bdd_manager.application_bdd_manager.model.MortuaryRepository;
 import com.bdd_manager.application_bdd_manager.model.Site;
 import com.bdd_manager.application_bdd_manager.model.dto.MortuaryRepoDto;
+import com.bdd_manager.application_bdd_manager.repository.FurnitureRepository;
 import com.bdd_manager.application_bdd_manager.repository.MortuaryRepositoryRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 /**
  * 
@@ -24,6 +29,9 @@ public class MortuaryRepositoryService {
 	MortuaryRepositoryRepository mortuaryRepositoryRepository;
 	
 	@Autowired
+	FurnitureRepository furnitureRepository;
+	
+	@Autowired
 	SiteService siteService;
 
 	/**
@@ -33,6 +41,7 @@ public class MortuaryRepositoryService {
 	 */
 	public MortuaryRepository addMortuaryRepositoryInDatabase(MortuaryRepoDto dto) throws Exception {
 
+		dto.setIsDeleted(false);		
 		MortuaryRepository mortuaryRepo = mortuaryRepoDtoToObject(dto);
 		
 		log.info("Add new mortuary repository to database");
@@ -173,6 +182,36 @@ public class MortuaryRepositoryService {
 	
 	/**
 	 * @param id
+	 * @return
+	 */
+	@Transactional
+	public MortuaryRepository setSoftDeleteForMortuaryRepo(int id) {
+
+		log.info("Set soft delete for mortuary repo in database");
+		
+		MortuaryRepository mortuaryRepo = getOneMortuaryRepositoryById(id);
+		List<Furniture> furnitures = furnitureRepository.findByMortuaryRepositoryId(id);
+		
+		if (mortuaryRepo.getIsDeleted()) {
+			
+		    return mortuaryRepo;
+		    
+		}
+		
+		furnitures.forEach(furniture -> {
+			
+			furniture.setIsDeleted(true);
+			
+		});
+		
+		mortuaryRepo.setIsDeleted(true);
+		
+		furnitureRepository.saveAll(furnitures);
+		return mortuaryRepositoryRepository.save(mortuaryRepo);
+	}
+	
+	/**
+	 * @param id
 	 */
 	public void deleteExistingMortuaryRepositoryInDatabase(int id) {
 
@@ -234,6 +273,7 @@ public class MortuaryRepositoryService {
 		mortuaryRepo.setPublication(dto.getPublication());
 		mortuaryRepo.setComment(dto.getComment());
 		mortuaryRepo.setPicture(dto.getPicture());
+		mortuaryRepo.setIsDeleted(dto.getIsDeleted());
 		
 		return mortuaryRepo;
 		

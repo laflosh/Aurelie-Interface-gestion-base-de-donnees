@@ -133,6 +133,31 @@ public class MortuaryRepositoryController {
 	 * @param id
 	 * @return
 	 */
+	@PutMapping("/mortuary-repo/{id}/soft-delete")
+	public ResponseEntity<MortuaryRepository> setSoftDeleteForMortuaryRepo(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to set soft delete for mortuary repo in database");
+			
+			MortuaryRepository mortuaryRepo = mortuaryRepositoryService.setSoftDeleteForMortuaryRepo(id);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(mortuaryRepo);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/mortuary-repo/{id}")
 	public ResponseEntity<String> deleteExistingMortuaryRepositoryInDatabase(@PathVariable int id){
 		

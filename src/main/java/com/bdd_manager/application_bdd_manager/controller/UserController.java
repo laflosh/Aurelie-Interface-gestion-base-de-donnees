@@ -166,7 +166,7 @@ public class UserController {
 			
 			User updateUser = userService.setSoftDeleteForUser(id);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(updateUser);
+			return ResponseEntity.status(HttpStatus.OK).body(updateUser);
 			
 		}catch(Exception e) {
 			
@@ -191,7 +191,7 @@ public class UserController {
 			
 			User updateUser = userService.unSetSoftDeleteForUser(id);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(updateUser);
+			return ResponseEntity.status(HttpStatus.OK).body(updateUser);
 			
 		}catch(Exception e) {
 			
