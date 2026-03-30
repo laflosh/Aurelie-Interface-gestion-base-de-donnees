@@ -80,6 +80,30 @@ public class MortuaryRepositoryController {
 	}
 	
 	/**
+	 * @return
+	 */
+	@GetMapping("/mortuary-repo/soft-delete")
+	public ResponseEntity<Iterable<MortuaryRepository>> getAllSoftDeleteMortuaryRepository(){
+		
+		try {
+			
+			log.info("Trying to fetch all soft deleted mortuary repo in database");
+			
+			Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryService.getAllSoftDeleteMortuaryRepository();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(mortuaryRepos);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
 	 * @param id
 	 * @return
 	 */

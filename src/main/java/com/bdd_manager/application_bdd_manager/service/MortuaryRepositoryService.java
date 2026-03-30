@@ -59,7 +59,7 @@ public class MortuaryRepositoryService {
 		
 		log.info("Fetch all mortuary repo in database");
 		
-		Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryRepository.findAll();
+		Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryRepository.getAllMortuaryRepositoryNotSoftDelete();
 		
 		return mortuaryRepos;
 		
@@ -91,6 +91,19 @@ public class MortuaryRepositoryService {
 		MortuaryRepository mortuaryRepo = mortuaryRepositoryRepository.findByIssueNumber(issue);
 		
 		return mortuaryRepo;
+		
+	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<MortuaryRepository> getAllSoftDeleteMortuaryRepository() {
+		
+		log.info("Fetch all soft deleted mortuary repo in database");
+		
+		Iterable<MortuaryRepository> mortuaryRepos = mortuaryRepositoryRepository.getAllMortuaryRepositorySoftDelete();
+		
+		return mortuaryRepos;
 		
 	}
 	
