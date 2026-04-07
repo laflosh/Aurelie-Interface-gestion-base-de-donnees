@@ -59,7 +59,20 @@ public class SiteService {
 
 		log.info("Fetch all sites in database");
 		
-		Iterable<Site> sites = siteRepository.findAll();
+		Iterable<Site> sites = siteRepository.getAllSiteNotSoftDelete();
+		
+		return sites;
+		
+	}
+	
+	/**
+	 * @return
+	 */
+	public Iterable<Site> getAllSoftDeleteSite() {
+
+		log.info("Fetch all soft deleted sites in database");
+		
+		Iterable<Site> sites = siteRepository.getAllSiteSoftDelete();
 		
 		return sites;
 		

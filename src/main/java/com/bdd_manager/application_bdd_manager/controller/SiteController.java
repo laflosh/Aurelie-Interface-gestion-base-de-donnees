@@ -80,6 +80,30 @@ public class SiteController {
 	}
 	
 	/**
+	 * @return
+	 */
+	@GetMapping("/site/soft-delete")
+	public ResponseEntity<Iterable<Site>> getAllSoftDeleteSite(){
+		
+		try {
+			
+			log.info("Trying to fetch all soft deleted sites in database");
+			
+			Iterable<Site> sites = siteService.getAllSoftDeleteSite();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(sites);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		
+	}
+	
+	/**
 	 * @param id
 	 * @return
 	 */
