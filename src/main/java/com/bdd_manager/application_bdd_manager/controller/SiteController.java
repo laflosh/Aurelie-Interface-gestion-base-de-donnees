@@ -154,7 +154,30 @@ public class SiteController {
 		
 	}
 	
-
+	/**
+	 * @param id
+	 * @return
+	 */
+	@PutMapping("/site/{id}/unset-soft-delete")
+	public ResponseEntity<Site> unSetSoftDeleteForSite(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to unset soft delete for a site in database");
+			
+			Site site = siteService.unSetSoftDeleteForSite(id);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(site);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
 	
 	/**
 	 * @param id

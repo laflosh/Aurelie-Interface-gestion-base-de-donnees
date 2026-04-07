@@ -240,6 +240,49 @@ public class SiteService {
 		return siteRepository.save(site);
 		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@Transactional
+	public Site unSetSoftDeleteForSite(int id) {
+		
+		log.info("Unset soft delete for mortuary repo in database");
+		
+		Site site = this.getSiteById(id);
+		
+		if (!site.getIsDeleted()) {
+			
+		    return site;
+		    
+		}
+		
+		List<MortuaryRepository> mortuaryRepository = mortuaryRepositoryRepository.findBySiteId(id);
+		
+		mortuaryRepository.forEach(repo -> {
+			
+			List<Furniture> furnitures = furnitureRepository.findByMortuaryRepositoryId(repo.getId());
+			
+			repo.setIsDeleted(false);
+			
+			furnitures.forEach(furniture -> {
+				
+				furniture.setIsDeleted(false);
+				
+			});
+			
+			furnitureRepository.saveAll(furnitures);
+			
+		});
+		
+		mortuaryRepositoryRepository.saveAll(mortuaryRepository);
+		site.setIsDeleted(false);
+		
+		return siteRepository.save(site);
+		
+	}
+	
 
 	/**
 	 * @param id
@@ -290,5 +333,5 @@ public class SiteService {
 		return site;
 		
 	}
-	
+
 }
