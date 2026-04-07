@@ -52,6 +52,8 @@ public class SiteDto {
 	private String reference;
 	
 	private String picture;
+	
+	private Boolean isDeleted;
 
 	public Integer getId() {
 		return id;
@@ -243,6 +245,14 @@ public class SiteDto {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }

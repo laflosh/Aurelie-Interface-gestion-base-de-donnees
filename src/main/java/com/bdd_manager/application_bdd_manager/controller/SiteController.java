@@ -117,7 +117,7 @@ public class SiteController {
 			
 			Site updatedSite = siteService.updateExistingSiteInDatabase(site);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(updatedSite);
+			return ResponseEntity.status(HttpStatus.OK).body(updatedSite);
 			
 		} catch(Exception e) {
 			
@@ -128,6 +128,33 @@ public class SiteController {
 		}
 		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@PutMapping("/site/{id}/soft-delete")
+	public ResponseEntity<Site> setSoftDeleteForSite(@PathVariable int id){
+		
+		try {
+			
+			log.info("Trying to set soft delete for a site in database");
+			
+			Site site = siteService.setSoftDeleteForSite(id);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(site);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			
+		}
+		
+	}
+	
+
 	
 	/**
 	 * @param id

@@ -1,5 +1,7 @@
 package com.bdd_manager.application_bdd_manager.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -19,5 +21,7 @@ public interface MortuaryRepositoryRepository extends CrudRepository<MortuaryRep
 	
 	@Query("select u from MortuaryRepository u where u.isDeleted = true")
 	Iterable<MortuaryRepository> getAllMortuaryRepositorySoftDelete();
+	
+	List<MortuaryRepository> findBySiteId(int id);
 	
 }

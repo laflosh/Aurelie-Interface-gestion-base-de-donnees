@@ -94,6 +94,9 @@ public class Site {
 	@Column(name = "picture")
 	private String picture;
 	
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
+	
 	@OneToMany(
 		mappedBy = "site",
 		fetch = FetchType.LAZY
@@ -300,6 +303,14 @@ public class Site {
 
 	public void setMortuaryRepositories(List<MortuaryRepository> mortuaryRepositories) {
 		this.mortuaryRepositories = mortuaryRepositories;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }

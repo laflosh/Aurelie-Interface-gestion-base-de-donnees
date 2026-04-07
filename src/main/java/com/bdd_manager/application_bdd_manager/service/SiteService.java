@@ -1,13 +1,21 @@
 package com.bdd_manager.application_bdd_manager.service;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bdd_manager.application_bdd_manager.model.Furniture;
+import com.bdd_manager.application_bdd_manager.model.MortuaryRepository;
 import com.bdd_manager.application_bdd_manager.model.Site;
 import com.bdd_manager.application_bdd_manager.model.dto.SiteDto;
+import com.bdd_manager.application_bdd_manager.repository.FurnitureRepository;
+import com.bdd_manager.application_bdd_manager.repository.MortuaryRepositoryRepository;
 import com.bdd_manager.application_bdd_manager.repository.SiteRepository;
+
+import jakarta.transaction.Transactional;
 
 /**
  * 
@@ -19,6 +27,12 @@ public class SiteService {
 	
 	@Autowired
 	SiteRepository siteRepository;
+	
+	@Autowired
+	MortuaryRepositoryRepository mortuaryRepositoryRepository;
+	
+	@Autowired
+	FurnitureRepository furnitureRepository;
 
 	/**
 	 * @param site
@@ -26,6 +40,7 @@ public class SiteService {
 	 */
 	public Site addNewSiteInDatabase(SiteDto dto) {
 
+		dto.setIsDeleted(false);
 		Site site = transferDtoToObject(dto);
 		
 		log.info("Add new site in database");
@@ -183,6 +198,48 @@ public class SiteService {
 		return updatedSite;
 		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@Transactional
+	public Site setSoftDeleteForSite(int id) {
+
+		log.info("Set soft delete for mortuary repo in database");
+		
+		Site site = this.getSiteById(id);
+		
+		if (site.getIsDeleted()) {
+			
+		    return site;
+		    
+		}
+		
+		List<MortuaryRepository> mortuaryRepository = mortuaryRepositoryRepository.findBySiteId(id);
+		
+		mortuaryRepository.forEach(repo -> {
+			
+			List<Furniture> furnitures = furnitureRepository.findByMortuaryRepositoryId(repo.getId());
+			
+			repo.setIsDeleted(true);
+			
+			furnitures.forEach(furniture -> {
+				
+				furniture.setIsDeleted(true);
+				
+			});
+			
+			furnitureRepository.saveAll(furnitures);
+			
+		});
+		
+		mortuaryRepositoryRepository.saveAll(mortuaryRepository);
+		site.setIsDeleted(true);
+		
+		return siteRepository.save(site);
+		
+	}
 
 	/**
 	 * @param id
@@ -228,6 +285,7 @@ public class SiteService {
 		site.setObservation(dto.getObservation());
 		site.setReference(dto.getReference());
 		site.setPicture(dto.getPicture());
+		site.setIsDeleted(dto.getIsDeleted());
 		
 		return site;
 		
